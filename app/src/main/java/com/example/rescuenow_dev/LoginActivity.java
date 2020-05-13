@@ -143,6 +143,14 @@ public class LoginActivity extends AppCompatActivity {
         mUserPassword = findViewById(R.id.edit_text_login_password);
         loginBtn = findViewById(R.id.button_login);
         signup = findViewById(R.id.text_view_signup);
+
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -119,7 +119,7 @@ public class SignupActivity extends AppCompatActivity {
 
     private void initUI() {
         //Binding UI Elements
-        //materialToolbar = findViewById(R.id.topAppBarLayout);
+        materialToolbar = findViewById(R.id.topAppBar);
         signupBtn = findViewById(R.id.button_sign_up);
         mUserAge = findViewById(R.id.edit_text_signup_age);
         mUserEmail = findViewById(R.id.edit_text_signup_email);
@@ -135,12 +135,13 @@ public class SignupActivity extends AppCompatActivity {
         textInputLayoutEmail = findViewById(R.id.input_layout_signup_email);
         textInputLayoutPassword = findViewById(R.id.input_layout_signup_password);
 
-        /*materialToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        materialToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
-        });*/
+        });
 
 
         myGenderAdapter = new ArrayAdapter<>(SignupActivity.this,
