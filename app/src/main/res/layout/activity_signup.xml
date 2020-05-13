@@ -164,7 +164,7 @@
 
             <Spinner
                 android:layout_below="@id/text_view_gender"
-                android:id="@+id/spinner_gender"
+                android:id="@+id/spinner_signup_gender"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_gravity="end"
@@ -176,7 +176,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_layout_signup_age"
-                android:layout_below="@id/spinner_gender"
+                android:layout_below="@id/spinner_signup_gender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Age"
@@ -206,7 +206,31 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.button.MaterialButton
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/input_layout_signup_age"
+                android:id="@+id/text_view_role"
+                android:fontFamily="@font/work_sans"
+                android:textColor="@color/darkgray"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="16dp"
+                android:text="Select Role"
+                />
+
+            <Spinner
+                android:layout_below="@id/text_view_role"
+                android:id="@+id/spinner_signup_role"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:layout_marginLeft="32dp"
+                android:background="@drawable/bottom_border"
+                android:layout_marginRight="32dp"
+                android:fontFamily="@font/work_sans"
+                android:textColor="@color/black" />
+
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
@@ -221,7 +245,7 @@
                 app:cornerRadius="4dp"
                 android:textSize="16sp"
                 android:layout_alignParentBottom="true"
-                android:layout_below="@id/input_layout_signup_age"
+                android:layout_below="@id/spinner_signup_role"
                 android:layout_marginTop="16dp"
                 />
         </RelativeLayout>
