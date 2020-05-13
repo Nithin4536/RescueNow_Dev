@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
@@ -39,6 +40,7 @@ public class SignupActivity extends AppCompatActivity {
     private String name, email, password, age, gender, role;
     private Spinner mSpinner, mRoleSpinner;
     private ArrayAdapter<String> myGenderAdapter, mUserRoleAdapter;
+    private MaterialToolbar materialToolbar;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
@@ -62,7 +64,6 @@ public class SignupActivity extends AppCompatActivity {
 
     private void checkFirebaseAuth() {
         mAuth = FirebaseAuth.getInstance();
-
         firebaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -106,7 +107,6 @@ public class SignupActivity extends AppCompatActivity {
 
                     Toast.makeText(SignupActivity.this, "Registration Successful. Please wait...", Toast.LENGTH_SHORT).show();
 
-                    mAuth.signOut();
                     Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
@@ -119,6 +119,7 @@ public class SignupActivity extends AppCompatActivity {
 
     private void initUI() {
         //Binding UI Elements
+        //materialToolbar = findViewById(R.id.topAppBarLayout);
         signupBtn = findViewById(R.id.button_sign_up);
         mUserAge = findViewById(R.id.edit_text_signup_age);
         mUserEmail = findViewById(R.id.edit_text_signup_email);
@@ -133,6 +134,14 @@ public class SignupActivity extends AppCompatActivity {
         textInputLayoutName = findViewById(R.id.input_layout_signup_name);
         textInputLayoutEmail = findViewById(R.id.input_layout_signup_email);
         textInputLayoutPassword = findViewById(R.id.input_layout_signup_password);
+
+        /*materialToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });*/
+
 
         myGenderAdapter = new ArrayAdapter<>(SignupActivity.this,
                 R.layout.spinner_gender, getResources().getStringArray(R.array.gender));
