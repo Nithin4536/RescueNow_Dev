@@ -105,6 +105,18 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             role = dataSnapshot.child("role").getValue().toString();
+                            if(role.equals("doctor"))
+                            {
+                                Intent intent = new Intent(LoginActivity.this, DoctorDashboardActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
+                            }
+                            else if(role.equals("patient"))
+                            {
+                                Intent intent = new Intent(LoginActivity.this, PatientDashboardActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
+                            }
                             Toast.makeText(LoginActivity.this, "Role: "+ role, Toast.LENGTH_SHORT).show();
                         }
 

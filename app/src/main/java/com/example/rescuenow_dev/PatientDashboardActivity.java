@@ -17,7 +17,7 @@ public class PatientDashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_dashboard);
-
+        mAuth = FirebaseAuth.getInstance();
         mSignout = findViewById(R.id.button_signout);
         mSignout.setOnClickListener(new View.OnClickListener() {
             @Override

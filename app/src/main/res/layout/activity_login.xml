@@ -83,6 +83,7 @@ android:background="@color/white">
                 android:fontFamily="@font/work_sans"
                 android:id="@+id/edit_text_login_password"
                 android:textSize="14sp"
+                android:inputType="textPassword"
                 android:background="@drawable/bottom_border"
                 />
 
