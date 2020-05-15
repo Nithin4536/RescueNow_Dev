@@ -5,10 +5,9 @@
     <item
         android:id="@+id/toolbar_profile"
         android:icon="@drawable/ic_account"
-        android:title="Sign out"
+        android:title="Account"
         app:showAsAction="always"
         />
-
 
 
 </menu>
