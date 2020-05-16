@@ -87,10 +87,6 @@ public class LoginActivity extends AppCompatActivity {
           }
     }
 
-    private void userDashboard() {
-
-    }
-
     private void checkFirebaseAuth() {
         mAuth = FirebaseAuth.getInstance();
         firebaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
@@ -126,14 +122,6 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     });
                 }
-               /* if(user != null){
-
-                    Toast.makeText(LoginActivity.this, "Load Dashboard", Toast.LENGTH_SHORT).show();
-                    //Intent intent = new Intent(LoginActivity.this, LoginActivity.class);
-                    //startActivity(intent);
-                    //finish();
-                    return;
-                }*/
             }
         };
     }
