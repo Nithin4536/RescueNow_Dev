@@ -1,1 +1,1 @@
-# RescueNow - Pocket Firstaid Android Application
+# RescueNow - Pocket FirstAid Android Application
