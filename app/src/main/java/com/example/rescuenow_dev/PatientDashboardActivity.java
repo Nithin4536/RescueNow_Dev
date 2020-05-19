@@ -1,6 +1,9 @@
 package com.example.rescuenow_dev;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +15,8 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.bottomnavigation.BottomNavigationMenu;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class PatientDashboardActivity extends AppCompatActivity {
@@ -19,6 +24,7 @@ public class PatientDashboardActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     MaterialToolbar mToolbar;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +37,41 @@ public class PatientDashboardActivity extends AppCompatActivity {
 
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+        bottomNavigationView = findViewById(R.id.bottom_nav_patient);
+        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 
+    }
 
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+            switch(menuItem.getItemId()){
+                case R.id.homeFragment:
+                    loadFragment(new PatientHomeFragment());
+                    return true;
+                case R.id.chatFragment:
+                    loadFragment(new PatientInboxFragment());
+                    return true;
+                case R.id.hospitalFragment:
+                    loadFragment(new PatientHospitalsFragment());
+                    return true;
+                default:
+                    return false;
+            }
+        }
+    };
+
+    //To load fragments when pressed in bottom navigation bar
+    private void loadFragment(Fragment fragment) {
+
+        // load fragment
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
 
     }
 
