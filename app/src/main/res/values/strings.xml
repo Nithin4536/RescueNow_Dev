@@ -11,8 +11,8 @@
     </string-array>
 
     <string-array name="role">
-        <item>doctor</item>
-        <item>patient</item>
+        <item>Patient</item>
+        <item>Doctor</item>
     </string-array>
 
 </resources>

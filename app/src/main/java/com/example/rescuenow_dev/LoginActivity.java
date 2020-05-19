@@ -29,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
+
     private Button loginBtn;
     private EditText mUserEmail, mUserPassword;
     private DatabaseReference usersDb;
@@ -96,18 +97,19 @@ public class LoginActivity extends AppCompatActivity {
 
                 if(user!= null){
                     String currentUserID = user.getUid();
+
                     usersDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserID);
                     usersDb.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             role = dataSnapshot.child("role").getValue().toString();
-                            if(role.equals("doctor"))
+                            if(role.equals("Doctor"))
                             {
                                 Intent intent = new Intent(LoginActivity.this, DoctorDashboardActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
                             }
-                            else if(role.equals("patient"))
+                            else if(role.equals("Patient"))
                             {
                                 Intent intent = new Intent(LoginActivity.this, PatientDashboardActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

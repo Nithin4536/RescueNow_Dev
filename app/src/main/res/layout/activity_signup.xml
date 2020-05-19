@@ -231,6 +231,39 @@
                 android:fontFamily="@font/work_sans"
                 android:textColor="@color/black" />
 
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="   Hospital Name"
+                android:padding="16dp"
+                android:background="@drawable/bottom_border"
+                android:id="@+id/edit_text_hospital"
+                android:visibility="visible"
+                android:drawableTint="@color/darkgray"
+                android:layout_below="@id/spinner_signup_role"
+                android:layout_marginRight="32dp"
+                android:layout_marginTop="4dp"
+                android:drawableLeft="@drawable/ic_hospital"
+                android:layout_marginLeft="32dp"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="   Hospital ID"
+                android:padding="16dp"
+                android:background="@drawable/bottom_border"
+                android:id="@+id/edit_text_hospital_id"
+                android:visibility="visible"
+                android:drawableTint="@color/darkgray"
+                android:layout_below="@id/edit_text_hospital"
+                android:layout_marginRight="32dp"
+                android:layout_marginTop="4dp"
+                android:drawableLeft="@drawable/ic_hospital"
+                android:layout_marginLeft="32dp"
+                />
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -245,10 +278,10 @@
                 android:id="@+id/button_sign_up"
                 app:cornerRadius="4dp"
                 android:textSize="16sp"
-                android:layout_below="@id/text_view_role"
-                android:layout_alignParentBottom="true"
+                android:layout_below="@id/edit_text_hospital_id"
+
                 android:layout_marginBottom="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 />
         </RelativeLayout>
 
