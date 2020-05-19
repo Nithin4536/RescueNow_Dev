@@ -15,20 +15,21 @@
         app:menu="@menu/toolbar_menu"
         android:id="@+id/toolbar" />
 
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/container"
         android:layout_below="@id/toolbar"
-        android:layout_above="@+id/bottom_nav">
+        android:layout_above="@+id/bottom_nav_patient">
 
 
-    </RelativeLayout>
+
+    </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bottom_nav"
+        android:id="@+id/bottom_nav_patient"
         app:labelVisibilityMode="labeled"
         android:layout_alignParentBottom="true"
         android:background="@color/white"
