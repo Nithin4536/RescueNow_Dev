@@ -9,5 +9,12 @@
         app:showAsAction="always"
         />
 
+    <item
+        android:id="@+id/toolbar_signout"
+        android:icon="@drawable/ic_power_settings"
+        android:title="Signout"
+        app:showAsAction="always"
+        />
+
 
 </menu>

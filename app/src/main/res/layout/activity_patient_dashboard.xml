@@ -15,21 +15,15 @@
         app:menu="@menu/toolbar_menu"
         android:id="@+id/toolbar" />
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/container"
         android:layout_below="@id/toolbar"
         android:layout_above="@+id/bottom_nav">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Patient Signout"
-            android:layout_gravity="center"
-            android:id="@+id/button_signout" />
 
-    </FrameLayout>
+    </RelativeLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
