@@ -39,7 +39,8 @@ public class PatientDashboardActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         bottomNavigationView = findViewById(R.id.bottom_nav_patient);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
+        //set home as main screen
+        bottomNavigationView.setSelectedItemId(R.id.homeFragment);
 
     }
 
@@ -70,7 +71,7 @@ public class PatientDashboardActivity extends AppCompatActivity {
         // load fragment
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, fragment);
-        transaction.addToBackStack(null);
+       // transaction.addToBackStack(null);
         transaction.commit();
 
     }
