@@ -85,8 +85,10 @@ public class SignupActivity extends AppCompatActivity {
 
 
     private void saveToDb() {
-        isEmailExists(email);
-
+        if(email!= null)
+        {
+            isEmailExists(email);
+        }
 
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
