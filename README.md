@@ -1,1 +1,2 @@
 # RescueNow - Pocket FirstAid Android Application
+Life-threatening injuries and emergencies can happen any time and anywhere, and this app will help the users to empower themselves to save lives. This app will allow users to learn about what to do in multiple medical emergencies, from severe bleeding to broken bones to heart attacks. This documentation briefs about the Rescue Now - A First Aid android application, with an overall specification and development process that includes software requirement, UI mockups and UML diagrams.
