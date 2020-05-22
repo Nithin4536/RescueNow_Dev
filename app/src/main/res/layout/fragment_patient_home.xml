@@ -51,6 +51,7 @@
             android:layout_below="@id/text_view_search"
             android:layout_marginTop="10dp"
             android:padding="20dp"
+            android:id="@+id/search_btn"
             android:layout_alignParentEnd="true"
             android:backgroundTint="@color/colorPrimary"
             android:layout_marginLeft="10dp"/>
@@ -81,7 +82,6 @@
             android:layout_marginBottom="16dp"
             android:layout_marginLeft="16dp"
             app:cardElevation="8dp"
-
             app:cardCornerRadius="8dp">
             
             <LinearLayout
@@ -190,6 +190,7 @@
             android:layout_width="0dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
+            android:id="@+id/card_injuries"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             android:layout_marginLeft="16dp"
