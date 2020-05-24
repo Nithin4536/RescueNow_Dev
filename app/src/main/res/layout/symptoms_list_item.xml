@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+
+            <TextView
+                android:id="@+id/text_view_disease_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="Disease Name"
+                android:textSize="32sp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/text_view_disease_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_view_disease_name"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="Description"
+
+                android:textSize="20sp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+            <TextView
+                android:id="@+id/text_view_disease_symptoms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_view_disease_description"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="Symptoms"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
