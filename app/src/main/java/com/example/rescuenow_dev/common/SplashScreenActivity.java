@@ -1,10 +1,12 @@
-package com.example.rescuenow_dev;
+package com.example.rescuenow_dev.common;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.example.rescuenow_dev.R;
 
 public class SplashScreenActivity extends AppCompatActivity {
 

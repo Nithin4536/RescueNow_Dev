@@ -1,4 +1,4 @@
-package com.example.rescuenow_dev;
+package com.example.rescuenow_dev.doctor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.rescuenow_dev.common.LoginActivity;
+import com.example.rescuenow_dev.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class DoctorDashboardActivity extends AppCompatActivity {

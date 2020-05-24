@@ -1,8 +1,10 @@
-package com.example.rescuenow_dev;
+package com.example.rescuenow_dev.common;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.rescuenow_dev.R;
 
 public class MainActivity extends AppCompatActivity {
 
