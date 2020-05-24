@@ -12,7 +12,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -63,7 +62,7 @@ public class PatientHomeFragment extends Fragment {
                 else {
 
                     String symptomsText = mSymptomsEditText.getText().toString();
-                    Intent searchIntent = new Intent(getContext(), SymptomsDetailsActivity.class);
+                    Intent searchIntent = new Intent(getContext(), SymptomsListActivity.class);
 
                     searchIntent.putExtra("symptom_name",symptomsText);
                     startActivity(searchIntent);
