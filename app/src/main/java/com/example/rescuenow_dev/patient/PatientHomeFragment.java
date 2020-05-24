@@ -1,4 +1,4 @@
-package com.example.rescuenow_dev;
+package com.example.rescuenow_dev.patient;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import com.example.rescuenow_dev.R;
+import com.example.rescuenow_dev.diseases.SymptomsListActivity;
 
 
 /**

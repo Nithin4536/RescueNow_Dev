@@ -9,19 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SymptomsListActivity"></activity>
-        <activity android:name=".PatientDashboardActivity" />
-        <activity android:name=".DoctorDashboardActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".diseases.SymptomsListActivity"></activity>
+        <activity android:name=".patient.PatientDashboardActivity" />
+        <activity android:name=".doctor.DoctorDashboardActivity" />
+        <activity android:name=".common.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignupActivity" />
-        <activity android:name=".SplashScreenActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".common.SignupActivity" />
+        <activity android:name=".common.SplashScreenActivity" />
+        <activity android:name=".common.MainActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

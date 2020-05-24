@@ -1,4 +1,4 @@
-package com.example.rescuenow_dev;
+package com.example.rescuenow_dev.diseases;
 
 public class Symptoms {
 

@@ -1,4 +1,4 @@
-package com.example.rescuenow_dev;
+package com.example.rescuenow_dev.patient;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,13 +9,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
+import com.example.rescuenow_dev.common.LoginActivity;
+import com.example.rescuenow_dev.R;
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.bottomnavigation.BottomNavigationMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
