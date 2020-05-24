@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.rescuenow_dev.R;
 import com.example.rescuenow_dev.diseases.SymptomsListActivity;
@@ -72,8 +73,34 @@ public class PatientHomeFragment extends Fragment {
 
                 }
 
+            }
+        });
 
+        mFirstAid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "First Aid Details", Toast.LENGTH_SHORT).show();
+            }
+        });
 
+        mFever.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Fever related Details", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mHeart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Heart related Details", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mInjuries.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Injuries Details", Toast.LENGTH_SHORT).show();
             }
         });
 
