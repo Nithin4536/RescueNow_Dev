@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -86,8 +87,23 @@ public class SymptomsListActivity extends AppCompatActivity {
                options
         ) {
             @Override
-            protected void onBindViewHolder(@NonNull DiseaseViewHolder viewHolder, int position, @NonNull Diseases model) {
-                viewHolder.setDetails(model.getName(), model.getDescription(), model.getPrecautions());
+            protected void onBindViewHolder(@NonNull DiseaseViewHolder viewHolder, int position, @NonNull final Diseases model) {
+                viewHolder.setDetails(model.getName(), model.getDescription(), model.getPrecautions(), model.getSymptoms(), model.getMedicines());
+
+                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getApplicationContext(), DieseasesDetails.class);
+
+                        intent.putExtra("disease_name",model.getName());
+                        intent.putExtra("disease_description",model.getDescription());
+                        intent.putExtra("disease_precautions",model.getPrecautions());
+                        intent.putExtra("disease_medicines", model.getMedicines());
+                        intent.putExtra("disease_symptoms", model.getSymptoms());
+
+                        startActivity(intent);
+                    }
+                });
             }
 
             @NonNull
@@ -99,6 +115,8 @@ public class SymptomsListActivity extends AppCompatActivity {
                 return new DiseaseViewHolder(view);
             }
         };
+
+
         firebaseRecyclerAdapter.startListening();
         mRecyclerview.setAdapter(firebaseRecyclerAdapter);
 
@@ -106,7 +124,7 @@ public class SymptomsListActivity extends AppCompatActivity {
 }
 
 class DiseaseViewHolder extends  RecyclerView.ViewHolder{
-    private TextView tv_name, tv_description, tv_symptoms;
+    private TextView tv_name, tv_description, tv_symptoms, tv_medicines, tv_precautions;
 
     private View mView;
     DiseaseViewHolder(@NonNull View itemView) {
@@ -114,13 +132,23 @@ class DiseaseViewHolder extends  RecyclerView.ViewHolder{
         mView = itemView;
     }
 
-    void setDetails(String d_name, String d_desc, String d_symptoms){
+    void setDetails(String d_name, String d_desc, String d_precautions, String d_symptoms, String d_medicines){
         tv_name = mView.findViewById(R.id.text_view_disease_name);
         tv_description = mView.findViewById(R.id.text_view_disease_description);
         tv_symptoms = mView.findViewById(R.id.text_view_disease_symptoms);
+        tv_medicines = mView.findViewById(R.id.text_view_disease_medicines);
+        tv_precautions = mView.findViewById(R.id.text_view_disease_precautions);
 
         tv_name.setText(d_name);
         tv_description.setText(d_desc);
         tv_symptoms.setText(d_symptoms);
+        tv_precautions.setText(d_precautions);
+        tv_medicines.setText(d_medicines);
+
     }
+
+
+
+
+
 }
