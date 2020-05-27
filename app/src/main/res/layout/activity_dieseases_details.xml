@@ -12,6 +12,15 @@ android:background="@color/white">
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        app:titleTextColor="@color/white"
+        app:subtitleTextColor="@color/white"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:title="Disease Information"
+        android:id="@+id/toolbar" />
 
     <ImageView
         android:id="@+id/dis_image"
@@ -32,7 +41,7 @@ android:background="@color/white">
         android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="27sp"
-        android:layout_below="@+id/dis_image" />
+        android:layout_below="@+id/toolbar" />
 
 
 
