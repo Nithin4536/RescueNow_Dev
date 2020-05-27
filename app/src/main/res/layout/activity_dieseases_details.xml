@@ -19,6 +19,7 @@ android:background="@color/white">
         android:layout_height="250dp"
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/ic_account"
+        android:visibility="gone"
         />
 
     <TextView
