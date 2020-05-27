@@ -60,6 +60,14 @@ public class Diseases {
         this.symptoms = symptoms;
     }
 
+    public Diseases(String name, String description, String precautions, String symptoms, String medicines) {
+        this.name = name;
+        this.description = description;
+        this.precautions = precautions;
+        this.symptoms = symptoms;
+        this.medicines = medicines;
+    }
+
     private String precautions;
     private String symptoms;
     private String medicines;
