@@ -46,6 +46,28 @@
                 android:layout_marginTop="5dp"
                 android:text="Symptoms"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+            <TextView
+                android:id="@+id/text_view_disease_precautions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_view_disease_symptoms"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="Precautions"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+
+            <TextView
+                android:id="@+id/text_view_disease_medicines"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_view_disease_precautions"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="Medicines"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

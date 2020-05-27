@@ -86,9 +86,6 @@ android:background="@color/white">
         app:lineHeight="28dp" />
 
 
-
-
-
 </RelativeLayout>
 
 </ScrollView>
