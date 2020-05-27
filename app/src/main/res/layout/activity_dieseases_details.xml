@@ -60,6 +60,19 @@ android:background="@color/white">
         app:lineHeight="28dp" />
 
     <TextView
+        android:id="@+id/dis_medicines"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="Medicines"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:layout_below="@id/dis_description"
+        app:lineHeight="28dp" />
+
+    <TextView
         android:id="@+id/dis_precautions"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -69,7 +82,7 @@ android:background="@color/white">
         android:text="Precautions"
         android:textColor="@android:color/black"
         android:textSize="16sp"
-        android:layout_below="@id/dis_description"
+        android:layout_below="@id/dis_medicines"
         app:lineHeight="28dp" />
 
 
