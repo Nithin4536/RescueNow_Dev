@@ -143,8 +143,10 @@ class DiseaseViewHolder extends  RecyclerView.ViewHolder{
             d_desc = d_desc.substring(0, 150)+"....";
         }
 
+        if(d_symptoms!=null){
         if(d_symptoms.length() > 100){
             d_symptoms = d_symptoms.substring(0, 100)+"...";
+        }
         }
 
         tv_name.setText(d_name);
