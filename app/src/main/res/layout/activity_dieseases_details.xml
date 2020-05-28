@@ -25,10 +25,11 @@ android:background="@color/white">
     <ImageView
         android:id="@+id/dis_image"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/toolbar"
+        android:background="@drawable/ic_heart_related"
+        android:backgroundTint="@color/colorPrimary"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/ic_account"
-        android:visibility="visible"
         />
 
     <TextView
