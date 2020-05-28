@@ -18,6 +18,10 @@ import android.widget.Toast;
 
 import com.example.rescuenow_dev.R;
 import com.example.rescuenow_dev.diseases.SymptomsListActivity;
+import com.example.rescuenow_dev.patient.home.BasicFirstAidActivity;
+import com.example.rescuenow_dev.patient.home.FeverRelatedActivity;
+import com.example.rescuenow_dev.patient.home.HeartRelatedActivity;
+import com.example.rescuenow_dev.patient.home.InjuriesActivity;
 
 
 /**
@@ -79,6 +83,9 @@ public class PatientHomeFragment extends Fragment {
         mFirstAid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Intent intent = new Intent(getContext(), BasicFirstAidActivity.class);
+                startActivity(intent);
                 Toast.makeText(getContext(), "First Aid Details", Toast.LENGTH_SHORT).show();
             }
         });
@@ -86,6 +93,8 @@ public class PatientHomeFragment extends Fragment {
         mFever.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getContext(), FeverRelatedActivity.class);
+                startActivity(intent);
                 Toast.makeText(getContext(), "Fever related Details", Toast.LENGTH_SHORT).show();
             }
         });
@@ -93,6 +102,8 @@ public class PatientHomeFragment extends Fragment {
         mHeart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HeartRelatedActivity.class);
+                startActivity(intent);
                 Toast.makeText(getContext(), "Heart related Details", Toast.LENGTH_SHORT).show();
             }
         });
@@ -100,6 +111,8 @@ public class PatientHomeFragment extends Fragment {
         mInjuries.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getContext(), InjuriesActivity.class);
+                startActivity(intent);
                 Toast.makeText(getContext(), "Injuries Details", Toast.LENGTH_SHORT).show();
             }
         });
