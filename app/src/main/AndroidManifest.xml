@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".diseases.DieseasesDetails"></activity>
+        <activity android:name=".patient.home.InjuriesActivity"></activity>
+        <activity android:name=".patient.home.HeartRelatedActivity" />
+        <activity android:name=".patient.home.FeverRelatedActivity" />
+        <activity android:name=".patient.home.BasicFirstAidActivity" />
+        <activity android:name=".diseases.DieseasesDetails" />
         <activity android:name=".diseases.SymptomsListActivity" />
         <activity android:name=".patient.PatientDashboardActivity" />
         <activity android:name=".doctor.DoctorDashboardActivity" />
