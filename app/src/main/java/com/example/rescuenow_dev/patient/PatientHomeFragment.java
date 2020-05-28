@@ -84,36 +84,40 @@ public class PatientHomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getContext(), BasicFirstAidActivity.class);
+                Intent intent = new Intent(getContext(), SymptomsListActivity.class);
+                intent.putExtra("symptom_name","firstaid");
                 startActivity(intent);
-                Toast.makeText(getContext(), "First Aid Details", Toast.LENGTH_SHORT).show();
+
             }
         });
 
         mFever.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), FeverRelatedActivity.class);
+                Intent intent = new Intent(getContext(), SymptomsListActivity.class);
+                intent.putExtra("symptom_name","fever");
                 startActivity(intent);
-                Toast.makeText(getContext(), "Fever related Details", Toast.LENGTH_SHORT).show();
+
             }
         });
 
         mHeart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), HeartRelatedActivity.class);
+                Intent intent = new Intent(getContext(), SymptomsListActivity.class);
+                intent.putExtra("symptom_name","heart");
                 startActivity(intent);
-                Toast.makeText(getContext(), "Heart related Details", Toast.LENGTH_SHORT).show();
+
             }
         });
 
         mInjuries.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), InjuriesActivity.class);
+                Intent intent = new Intent(getContext(), SymptomsListActivity.class);
+                intent.putExtra("symptom_name","injuries");
                 startActivity(intent);
-                Toast.makeText(getContext(), "Injuries Details", Toast.LENGTH_SHORT).show();
+
             }
         });
 
