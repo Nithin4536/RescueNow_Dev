@@ -25,7 +25,10 @@ public class DieseasesDetails extends AppCompatActivity {
         disease_medicines = getIntent().getStringExtra("disease_medicines");
         disease_symptoms = getIntent().getStringExtra("disease_symptoms");
         disease_precautions = getIntent().getStringExtra("disease_precautions");
-        
+
+
+
+
         setUI();
     }
 

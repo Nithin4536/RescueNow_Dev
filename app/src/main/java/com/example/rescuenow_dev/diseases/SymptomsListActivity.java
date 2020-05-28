@@ -139,6 +139,14 @@ class DiseaseViewHolder extends  RecyclerView.ViewHolder{
         tv_medicines = mView.findViewById(R.id.text_view_disease_medicines);
         tv_precautions = mView.findViewById(R.id.text_view_disease_precautions);
 
+        if(d_desc.length() > 150){
+            d_desc = d_desc.substring(0, 150)+"....";
+        }
+
+        if(d_symptoms.length() > 100){
+            d_symptoms = d_symptoms.substring(0, 100)+"...";
+        }
+
         tv_name.setText(d_name);
         tv_description.setText(d_desc);
         tv_symptoms.setText(d_symptoms);
