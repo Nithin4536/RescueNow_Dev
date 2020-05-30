@@ -38,7 +38,7 @@ tools:context=".doctor.DoctorDashboardActivity">
         app:labelVisibilityMode="labeled"
         android:layout_alignParentBottom="true"
         android:background="@color/white"
-        app:menu="@menu/bottom_navigation_menu_patient"/>
+        app:menu="@menu/bottom_navigation_menu_doctor"/>
 
 
 </RelativeLayout>
