@@ -39,7 +39,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyA7ObrXbtaq1yD9tVfG1j-E1Kip0cQVN7g" />
+            android:value="AIzaSyAHRD7MFO9GYQdS_RFdApxoTPNLTx3dYEg" />
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -47,6 +47,7 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>
