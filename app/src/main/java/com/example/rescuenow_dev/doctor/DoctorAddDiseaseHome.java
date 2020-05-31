@@ -12,8 +12,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.rescuenow_dev.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,8 +32,8 @@ public class DoctorAddDiseaseHome extends Fragment {
 
 
     EditText etDiseaseName, etDescription, etSymptoms, etPrecautions, etMedicines;
-    String name, description, symtoms, precautions, medicines;
-
+    String name, description, symptoms, precautions, medicines;
+    DatabaseReference SymptomsDatabaseReference;
     Button addDiseaseBtn;
 
     public DoctorAddDiseaseHome() {
@@ -41,6 +51,8 @@ public class DoctorAddDiseaseHome extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        SymptomsDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Symptoms");
+
 
         etDiseaseName = view.findViewById(R.id.disease_name);
         etDescription = view.findViewById(R.id.disease_description);
@@ -77,17 +89,48 @@ public class DoctorAddDiseaseHome extends Fragment {
                 }
                 else
                 {
-                    
+
+                    name = etDiseaseName.getText().toString();
+                    description = etDescription.getText().toString();
+                    symptoms = etSymptoms.getText().toString();
+                    precautions = etPrecautions.getText().toString();
+                    medicines = etMedicines.getText().toString();
+
+                    Map symptomsData = new HashMap<>();
+
+                    symptomsData.put("name", name);
+                    symptomsData.put("description", description);
+                    symptomsData.put("symptoms", symptoms);
+                    symptomsData.put("medicines", medicines);
+                    symptomsData.put("precautions", precautions);
+
+                    String key = SymptomsDatabaseReference.child(symptoms).getKey();
+                    SymptomsDatabaseReference.child(symptoms).child(key).updateChildren(symptomsData).addOnSuccessListener(new OnSuccessListener() {
+                        @Override
+                        public void onSuccess(Object o) {
+                            Toast.makeText(getContext(), "Disease Information is added successfully", Toast.LENGTH_SHORT).show();
+                            clearData();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getContext(), "Something went wrong check again!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
-
-
-
-
             }
         });
 
 
 
 
+    }
+
+    private void clearData() {
+        etDescription.setText("");
+        etMedicines.setText("");
+        etDiseaseName.setText("");
+        etPrecautions.setText("");
+        etSymptoms.setText("");
     }
 }
