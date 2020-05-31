@@ -14,14 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.rescuenow_dev.R;
 import com.example.rescuenow_dev.diseases.SymptomsListActivity;
-import com.example.rescuenow_dev.patient.home.BasicFirstAidActivity;
-import com.example.rescuenow_dev.patient.home.FeverRelatedActivity;
-import com.example.rescuenow_dev.patient.home.HeartRelatedActivity;
-import com.example.rescuenow_dev.patient.home.InjuriesActivity;
 
 
 /**
