@@ -1,14 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".doctor.DoctorAddDiseaseHome">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="DISEASE INFORMATION"
+        android:gravity="center"
+        android:fontFamily="@font/crimson_text"
+        android:layout_marginTop="12dp"
+        android:textSize="32sp"/>
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+        
+        
+       <EditText
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginLeft="32dp"
+           android:layout_marginRight="32dp"
+           android:hint="Enter Diesease Name"
+           android:id="@+id/disease_name"
+           android:layout_marginBottom="16dp"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:hint="Enter description"
+            android:id="@+id/disease_description"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:hint="Enter Symptoms"
+            android:id="@+id/disease_symptom"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:hint="Enter Precautions"
+            android:id="@+id/disease_precautions"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:hint="Enter Medicines"
+            android:id="@+id/disease_medicines"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Disease Information"
+            android:id="@+id/add_disease"
+            android:layout_marginLeft="32dp"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:layout_marginRight="32dp"
+            />
+        
+    </LinearLayout>
+    
+
+</RelativeLayout>
