@@ -36,6 +36,7 @@ public class DoctorAddDiseaseHome extends Fragment {
     DatabaseReference SymptomsDatabaseReference;
     Button addDiseaseBtn;
 
+
     public DoctorAddDiseaseHome() {
         // Required empty public constructor
     }
@@ -104,7 +105,7 @@ public class DoctorAddDiseaseHome extends Fragment {
                     symptomsData.put("medicines", medicines);
                     symptomsData.put("precautions", precautions);
 
-                    String key = SymptomsDatabaseReference.child(symptoms).getKey();
+                    String key = SymptomsDatabaseReference.child(symptoms).push().getKey();
                     SymptomsDatabaseReference.child(symptoms).child(key).updateChildren(symptomsData).addOnSuccessListener(new OnSuccessListener() {
                         @Override
                         public void onSuccess(Object o) {

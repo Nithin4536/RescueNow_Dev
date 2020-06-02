@@ -47,7 +47,7 @@ public class PatientHospitalsFragment extends Fragment implements OnMapReadyCall
     MapView mMapView;
     View mView;
     private FirebaseAuth mAuth;
-    private String currentUserID;
+
     TextView currentLocation;
     Double latitude, longitude;
 
@@ -68,7 +68,6 @@ public class PatientHospitalsFragment extends Fragment implements OnMapReadyCall
         mView = inflater.inflate(R.layout.fragment_patient_hospitals, container, false);
 
         mAuth = FirebaseAuth.getInstance();
-        currentUserID = mAuth.getCurrentUser().getUid();
 
         return mView;
     }
