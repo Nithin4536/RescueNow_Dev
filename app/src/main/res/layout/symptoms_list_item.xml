@@ -36,7 +36,6 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:text="Description"
-                android:fontFamily="@font/work_sans"
                 android:textSize="20sp"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
 
@@ -60,8 +59,8 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:text="Precautions"
-
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+                android:visibility="gone"
+                />
 
 
             <TextView
@@ -72,7 +71,8 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:text="Medicines"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+                android:visibility="gone"
+               />
 
         </RelativeLayout>
 
