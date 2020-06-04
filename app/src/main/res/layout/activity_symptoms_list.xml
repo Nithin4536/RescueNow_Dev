@@ -6,9 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".diseases.SymptomsListActivity">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        app:titleTextColor="@color/white"
+        app:subtitleTextColor="@color/white"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:title="Symptoms"
+        android:id="@+id/sym_toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
+        android:layout_below="@id/sym_toolbar"
         android:layout_height="match_parent"
         android:id="@+id/recycler_view_symtoms"
         tools:listitem="@layout/symptoms_list_item"/>
