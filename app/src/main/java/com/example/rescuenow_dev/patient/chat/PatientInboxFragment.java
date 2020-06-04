@@ -1,4 +1,4 @@
-package com.example.rescuenow_dev.patient;
+package com.example.rescuenow_dev.patient.chat;
 
 import android.os.Bundle;
 
