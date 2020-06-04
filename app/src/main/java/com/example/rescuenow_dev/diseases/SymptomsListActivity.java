@@ -15,8 +15,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rescuenow_dev.R;
+import com.example.rescuenow_dev.common.LoginActivity;
+import com.example.rescuenow_dev.common.SignupActivity;
+import com.example.rescuenow_dev.patient.PatientDashboardActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -45,6 +49,8 @@ public class SymptomsListActivity extends AppCompatActivity {
 
     RecyclerView mRecyclerview;
 
+    private MaterialToolbar materialToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,8 +71,17 @@ public class SymptomsListActivity extends AppCompatActivity {
 
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
+        materialToolbar = findViewById(R.id.sym_toolbar);
+
         mSymptomsDatabase = FirebaseDatabase.getInstance().getReference().child("Symptoms").child(mSymptomName);
 
+        materialToolbar.setTitle(mSymptomName.toUpperCase());
+        materialToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               finish();
+            }
+        });
 
        // mSearchQuery = mSymptomsDatabase.orderByChild("symptoms").startAt(mSymptomName).endAt(mSymptomName + "\uf8ff");
 
