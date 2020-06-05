@@ -33,8 +33,6 @@ public class DieseasesDetails extends AppCompatActivity {
         disease_precautions = getIntent().getStringExtra("disease_precautions");
 
 
-
-
         setUI();
     }
 

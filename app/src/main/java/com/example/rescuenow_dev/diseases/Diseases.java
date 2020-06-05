@@ -5,6 +5,7 @@ public class Diseases {
     private String id;
     private String name;
     private String description;
+    private String doctor;
 
     public String getId() {
         return id;
@@ -76,4 +77,11 @@ public class Diseases {
     public Diseases() {
     }
 
+    public String getDoctor() {
+        return doctor;
     }
+
+    public void setDoctor(String doctor) {
+        this.doctor = doctor;
+    }
+}

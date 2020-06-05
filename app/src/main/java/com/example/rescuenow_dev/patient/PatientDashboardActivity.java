@@ -86,12 +86,13 @@ public class PatientDashboardActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.toolbar_signout: {
                 mAuth.signOut();
+                Toast.makeText(this, "Logged out successfully...", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(PatientDashboardActivity.this, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
             case R.id.toolbar_profile: {
-                Toast.makeText(this, "profile clicked", Toast.LENGTH_SHORT).show();
+
             }
             default:
                 return super.onOptionsItemSelected(item);
