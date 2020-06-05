@@ -19,8 +19,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -96,28 +100,50 @@ public class DoctorAddDiseaseHome extends Fragment {
                     symptoms = etSymptoms.getText().toString();
                     precautions = etPrecautions.getText().toString();
                     medicines = etMedicines.getText().toString();
+                    final String key = SymptomsDatabaseReference.child(symptoms).push().getKey();
 
-                    Map symptomsData = new HashMap<>();
+                    final Map symptomsData = new HashMap<>();
 
                     symptomsData.put("name", name);
                     symptomsData.put("description", description);
                     symptomsData.put("symptoms", symptoms);
                     symptomsData.put("medicines", medicines);
                     symptomsData.put("precautions", precautions);
+                    symptomsData.put("url", "");
 
-                    String key = SymptomsDatabaseReference.child(symptoms).push().getKey();
-                    SymptomsDatabaseReference.child(symptoms).child(key).updateChildren(symptomsData).addOnSuccessListener(new OnSuccessListener() {
+                    DatabaseReference userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance()
+                    .getCurrentUser().getUid()).child("name");
+
+
+                    userDb.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
-                        public void onSuccess(Object o) {
-                            Toast.makeText(getContext(), "Disease Information is added successfully", Toast.LENGTH_SHORT).show();
-                            clearData();
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            String doctorName;
+                            doctorName =  dataSnapshot.getValue().toString();
+                            symptomsData.put("doctor", doctorName);
+
+                            SymptomsDatabaseReference.child(symptoms).child(key).updateChildren(symptomsData).addOnSuccessListener(new OnSuccessListener() {
+                                @Override
+                                public void onSuccess(Object o) {
+                                    Toast.makeText(getContext(), "Disease Information is added successfully", Toast.LENGTH_SHORT).show();
+                                    clearData();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getContext(), "Something went wrong check again!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
                         }
-                    }).addOnFailureListener(new OnFailureListener() {
+
                         @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(getContext(), "Something went wrong check again!", Toast.LENGTH_SHORT).show();
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
                         }
                     });
+
+
+
                 }
             }
         });
