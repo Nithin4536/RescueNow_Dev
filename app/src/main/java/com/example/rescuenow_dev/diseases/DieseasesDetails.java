@@ -34,8 +34,6 @@ public class DieseasesDetails extends YouTubeBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dieseases_details);
 
-        initUI();
-
         disease_title = getIntent().getStringExtra("disease_name");
         disease_description = getIntent().getStringExtra("disease_description");
         disease_medicines = getIntent().getStringExtra("disease_medicines");
@@ -43,6 +41,7 @@ public class DieseasesDetails extends YouTubeBaseActivity {
         disease_precautions = getIntent().getStringExtra("disease_precautions");
         disease_url = getIntent().getStringExtra("disease_url");
 
+        initUI();
         setUI();
     }
 

@@ -117,25 +117,7 @@ public class SymptomsListActivity extends AppCompatActivity {
                         intent.putExtra("disease_precautions",model.getPrecautions());
                         intent.putExtra("disease_medicines", model.getMedicines());
                         intent.putExtra("disease_symptoms", model.getSymptoms());
-
-                        mSymptomsDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                if(dataSnapshot.exists())
-                                {
-                                    for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                                        symptom_url =  ds.child("url").getValue(String.class);
-                                        intent.putExtra("disease_url", symptom_url);
-                                    }
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            }
-                        });
-
+                        intent.putExtra("disease_url", model.getUrl());
 
                         startActivity(intent);
                     }
@@ -189,10 +171,7 @@ class DiseaseViewHolder extends  RecyclerView.ViewHolder{
         tv_symptoms.setText(d_symptoms);
         tv_precautions.setText(d_precautions);
         tv_medicines.setText(d_medicines);
-
     }
-
-
 
 
 
