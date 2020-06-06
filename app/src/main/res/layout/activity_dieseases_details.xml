@@ -22,8 +22,8 @@ android:background="@color/white">
         app:title="Disease Information"
         android:id="@+id/toolbar" />
 
-    <ImageView
-        android:id="@+id/dis_image"
+    <com.google.android.youtube.player.YouTubePlayerView
+        android:id="@+id/dis_video"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_below="@id/toolbar"
@@ -43,7 +43,7 @@ android:background="@color/white">
         android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="27sp"
-        android:layout_below="@+id/dis_image" />
+        android:layout_below="@+id/dis_video" />
 
     <TextView
         android:id="@+id/tv_symptoms"
