@@ -11,13 +11,23 @@ import android.widget.Toast;
 import com.example.rescuenow_dev.R;
 import com.example.rescuenow_dev.patient.PatientDashboardActivity;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-public class DieseasesDetails extends AppCompatActivity {
+public class DieseasesDetails extends YouTubeBaseActivity {
 
 
     TextView diseaseTitle, diseaseDescription, diseaseSymptoms, diseasePrecautions, diseaseMedicines;
-    String disease_title, disease_description, disease_symptoms, disease_precautions, disease_medicines;
+    String disease_title, disease_description, disease_symptoms, disease_precautions, disease_medicines, disease_url;
     private MaterialToolbar materialToolbar;
+    YouTubePlayerView youTubePlayerView;
+    YouTubePlayer.OnInitializedListener onInitializedListener;
+    //Database reference
+    DatabaseReference mSymptomsDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +41,13 @@ public class DieseasesDetails extends AppCompatActivity {
         disease_medicines = getIntent().getStringExtra("disease_medicines");
         disease_symptoms = getIntent().getStringExtra("disease_symptoms");
         disease_precautions = getIntent().getStringExtra("disease_precautions");
-
+        disease_url = getIntent().getStringExtra("disease_url");
 
         setUI();
     }
 
     private void setUI() {
+
 
         diseaseTitle.setText(disease_title);
         diseaseDescription.setText(disease_description);
@@ -52,10 +63,29 @@ public class DieseasesDetails extends AppCompatActivity {
             }
         });
 
+        onInitializedListener = new YouTubePlayer.OnInitializedListener() {
+            @Override
+            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+                youTubePlayer.loadVideo(disease_url);
+            }
+
+            @Override
+            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+
+            }
+        };
+
+        youTubePlayerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                youTubePlayerView.initialize("AIzaSyCaXOyzL94451u0lXMJP3-2V39q0fJ-gzM", onInitializedListener);
+            }
+        });
     }
 
     private void initUI() {
 
+        youTubePlayerView = findViewById(R.id.dis_video);
         diseaseDescription = findViewById(R.id.dis_description);
         diseaseTitle = findViewById(R.id.dis_name);
         diseaseSymptoms = findViewById(R.id.dis_symptoms);

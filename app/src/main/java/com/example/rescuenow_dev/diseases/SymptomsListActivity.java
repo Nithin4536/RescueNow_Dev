@@ -48,6 +48,7 @@ public class SymptomsListActivity extends AppCompatActivity {
     Query mSearchQuery;
 
     RecyclerView mRecyclerview;
+    String symptom_url;
 
     private MaterialToolbar materialToolbar;
 
@@ -74,6 +75,7 @@ public class SymptomsListActivity extends AppCompatActivity {
         materialToolbar = findViewById(R.id.sym_toolbar);
 
         mSymptomsDatabase = FirebaseDatabase.getInstance().getReference().child("Symptoms").child(mSymptomName);
+
 
         materialToolbar.setTitle(mSymptomName.toUpperCase());
         materialToolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -108,13 +110,32 @@ public class SymptomsListActivity extends AppCompatActivity {
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(getApplicationContext(), DieseasesDetails.class);
+                        final Intent intent = new Intent(getApplicationContext(), DieseasesDetails.class);
 
                         intent.putExtra("disease_name",model.getName());
                         intent.putExtra("disease_description",model.getDescription());
                         intent.putExtra("disease_precautions",model.getPrecautions());
                         intent.putExtra("disease_medicines", model.getMedicines());
                         intent.putExtra("disease_symptoms", model.getSymptoms());
+
+                        mSymptomsDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if(dataSnapshot.exists())
+                                {
+                                    for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                                        symptom_url =  ds.child("url").getValue(String.class);
+                                        intent.putExtra("disease_url", symptom_url);
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
 
                         startActivity(intent);
                     }
@@ -130,7 +151,6 @@ public class SymptomsListActivity extends AppCompatActivity {
                 return new DiseaseViewHolder(view);
             }
         };
-
 
         firebaseRecyclerAdapter.startListening();
         mRecyclerview.setAdapter(firebaseRecyclerAdapter);
@@ -159,9 +179,9 @@ class DiseaseViewHolder extends  RecyclerView.ViewHolder{
         }
 
         if(d_symptoms!=null){
-        if(d_symptoms.length() > 100){
-            d_symptoms = d_symptoms.substring(0, 100)+"...";
-        }
+            if(d_symptoms.length() > 100){
+                d_symptoms = d_symptoms.substring(0, 100)+"...";
+            }
         }
 
         tv_name.setText(d_name);
