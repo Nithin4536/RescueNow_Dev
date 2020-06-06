@@ -109,7 +109,7 @@ public class DoctorAddDiseaseHome extends Fragment {
                     symptomsData.put("symptoms", symptoms);
                     symptomsData.put("medicines", medicines);
                     symptomsData.put("precautions", precautions);
-                    symptomsData.put("url", "");
+                    symptomsData.put("url", "A-Mf38Q-E1U");
 
                     DatabaseReference userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance()
                     .getCurrentUser().getUid()).child("name");
@@ -120,9 +120,14 @@ public class DoctorAddDiseaseHome extends Fragment {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             String doctorName;
                             doctorName =  dataSnapshot.getValue().toString();
+
                             symptomsData.put("doctor", doctorName);
 
-                            SymptomsDatabaseReference.child(symptoms).child(key).updateChildren(symptomsData).addOnSuccessListener(new OnSuccessListener() {
+                            SymptomsDatabaseReference
+                                    .child(symptoms).
+                                    child(key)
+                                    .updateChildren(symptomsData)
+                                    .addOnSuccessListener(new OnSuccessListener() {
                                 @Override
                                 public void onSuccess(Object o) {
                                     Toast.makeText(getContext(), "Disease Information is added successfully", Toast.LENGTH_SHORT).show();

@@ -6,6 +6,7 @@ public class Diseases {
     private String name;
     private String description;
     private String doctor;
+    private String url;
 
     public String getId() {
         return id;
@@ -83,5 +84,13 @@ public class Diseases {
 
     public void setDoctor(String doctor) {
         this.doctor = doctor;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
