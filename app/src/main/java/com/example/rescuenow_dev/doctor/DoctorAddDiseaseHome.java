@@ -190,7 +190,49 @@ public class DoctorAddDiseaseHome extends Fragment {
 
     }
 
-   
+    private void getListofDiseases() {
+        SymptomsDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Diseases");
+
+        options = new FirebaseRecyclerOptions.Builder<Diseases>().setQuery(SymptomsDatabaseReference, Diseases.class).build();
+
+        FirebaseRecyclerAdapter<Diseases, DViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Diseases, DViewHolder>(
+                options
+        ) {
+            @Override
+            protected void onBindViewHolder(@NonNull DViewHolder viewHolder, int position, @NonNull final Diseases model) {
+                viewHolder.setDetails(model.getName(), model.getDescription(), model.getPrecautions(), model.getSymptoms(), model.getMedicines());
+
+                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final Intent intent = new Intent(getContext(), DieseasesDetails.class);
+
+                        intent.putExtra("disease_name", model.getName());
+                        intent.putExtra("disease_description", model.getDescription());
+                        intent.putExtra("disease_precautions", model.getPrecautions());
+                        intent.putExtra("disease_medicines", model.getMedicines());
+                        intent.putExtra("disease_symptoms", model.getSymptoms());
+                        intent.putExtra("disease_url", model.getUrl());
+
+                        startActivity(intent);
+                    }
+                });
+            }
+
+            @NonNull
+            @Override
+            public DViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.symptoms_list_item, parent, false);
+
+                return new DViewHolder(view);
+            }
+        };
+
+        firebaseRecyclerAdapter.startListening();
+        mRecyclerView.setAdapter(firebaseRecyclerAdapter);
+
+    }
 
     private void clearData() {
         etDescription.setText("");
