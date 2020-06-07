@@ -16,10 +16,44 @@
         android:layout_marginTop="12dp"
         android:textSize="32sp"/>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/ll1"
+        android:layout_centerInParent="true">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:id="@+id/btn_view_diseases"
+            android:text="View Available Diseases"
+            android:textColor="@color/white"
+            android:background="@color/colorPrimary"
+            android:layout_marginBottom="32dp"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:text="Add New Disease"
+            android:id="@+id/btn_add_disease"
+            android:textColor="@color/white"
+            android:background="@color/colorPrimary"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:id="@+id/ll2"
         android:orientation="vertical">
 
 
@@ -80,6 +114,20 @@
             android:layout_marginRight="32dp"
             />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/ll3"
+        android:visibility="gone"
+        >
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_below="@id/sym_toolbar"
+            android:layout_height="match_parent"
+            android:id="@+id/recycler_view_symtoms"
+            tools:listitem="@layout/symptoms_list_item"/>
     </LinearLayout>
 
 

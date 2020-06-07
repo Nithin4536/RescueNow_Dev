@@ -22,7 +22,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".doctor.ModifyDiseases"></activity>
+        <activity android:name=".doctor.ModifyDiseases" />
         <activity android:name=".diseases.DieseasesDetails" />
         <activity android:name=".diseases.SymptomsListActivity" />
         <activity android:name=".patient.PatientDashboardActivity" />
