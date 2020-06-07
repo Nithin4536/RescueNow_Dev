@@ -53,6 +53,82 @@ public class ModifyDiseases extends YouTubeBaseActivity {
     }
 
 
+    private void setUI() {
+
+
+        diseaseTitle.setText(disease_title);
+        diseaseDescription.setText(disease_description);
+        diseaseMedicines.setText(disease_medicines);
+        diseaseSymptoms.setText(disease_symptoms);
+        diseasePrecautions.setText(disease_precautions);
+
+
+        materialToolbar.setTitle(disease_title.toUpperCase());
+        materialToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        onInitializedListener = new YouTubePlayer.OnInitializedListener() {
+            @Override
+            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+                youTubePlayer.loadVideo(disease_url);
+            }
+
+            @Override
+            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+
+            }
+        };
+
+        youTubePlayerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                youTubePlayerView.initialize("AIzaSyCaXOyzL94451u0lXMJP3-2V39q0fJ-gzM", onInitializedListener);
+            }
+        });
+
+        mSaveDisease.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveToDatabase();
+            }
+        });
+    }
+
+    private void saveToDatabase() {
+
+        mSymptomsDatabase = FirebaseDatabase.getInstance().getReference().child("Symptoms").child(disease_symptoms).child(disease_id);
+        mDiseasesDatabase = FirebaseDatabase.getInstance().getReference().child("Diseases").child(disease_id);
+        mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+        .child("disease_postings").child(disease_id);
+
+        //Get data from Edit texts
+        disease_medicines = diseaseMedicines.getText().toString();
+        disease_symptoms= diseaseSymptoms.getText().toString();
+        disease_precautions = diseasePrecautions.getText().toString();
+        disease_title = diseaseTitle.getText().toString();
+        disease_description = diseaseDescription.getText().toString();
+
+        Map DiseasesMap = new HashMap();
+
+        DiseasesMap.put("medicines", disease_medicines);
+        DiseasesMap.put("precautions", disease_precautions);
+        DiseasesMap.put("symptoms", disease_symptoms);
+        DiseasesMap.put("description", disease_description);
+        DiseasesMap.put("name", disease_title);
+
+        mSymptomsDatabase.updateChildren(DiseasesMap);
+        mDiseasesDatabase.updateChildren(DiseasesMap);
+        mUsersDatabase.updateChildren(DiseasesMap);
+
+        Toast.makeText(this, "Disease details are updated successfully!", Toast.LENGTH_SHORT).show();
+
+        Intent homeIntent = new Intent(this, DoctorDashboardActivity.class);
+        startActivity(homeIntent);
+    }
 
     private void initUI() {
 
