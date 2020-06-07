@@ -22,7 +22,7 @@ public class DieseasesDetails extends YouTubeBaseActivity {
 
 
     TextView diseaseTitle, diseaseDescription, diseaseSymptoms, diseasePrecautions, diseaseMedicines;
-    String disease_title, disease_description, disease_symptoms, disease_precautions, disease_medicines, disease_url;
+    String disease_title, disease_description, disease_symptoms, disease_precautions, disease_medicines, disease_url, disease_doctor;
     private MaterialToolbar materialToolbar;
     YouTubePlayerView youTubePlayerView;
     YouTubePlayer.OnInitializedListener onInitializedListener;
@@ -40,6 +40,7 @@ public class DieseasesDetails extends YouTubeBaseActivity {
         disease_symptoms = getIntent().getStringExtra("disease_symptoms");
         disease_precautions = getIntent().getStringExtra("disease_precautions");
         disease_url = getIntent().getStringExtra("disease_url");
+        disease_doctor = getIntent().getStringExtra("disease_doctor");
 
         initUI();
         setUI();

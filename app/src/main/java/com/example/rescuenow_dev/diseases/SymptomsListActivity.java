@@ -105,7 +105,8 @@ public class SymptomsListActivity extends AppCompatActivity {
         ) {
             @Override
             protected void onBindViewHolder(@NonNull DiseaseViewHolder viewHolder, int position, @NonNull final Diseases model) {
-                viewHolder.setDetails(model.getName(), model.getDescription(), model.getPrecautions(), model.getSymptoms(), model.getMedicines());
+                viewHolder.setDetails(model.getName(), model.getDescription(), model.getPrecautions(),
+                        model.getSymptoms(), model.getMedicines(), model.getDoctor());
 
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -118,6 +119,7 @@ public class SymptomsListActivity extends AppCompatActivity {
                         intent.putExtra("disease_medicines", model.getMedicines());
                         intent.putExtra("disease_symptoms", model.getSymptoms());
                         intent.putExtra("disease_url", model.getUrl());
+                        intent.putExtra("disease_doctor", model.getDoctor());
 
                         startActivity(intent);
                     }
@@ -141,7 +143,7 @@ public class SymptomsListActivity extends AppCompatActivity {
 }
 
 class DiseaseViewHolder extends  RecyclerView.ViewHolder{
-    private TextView tv_name, tv_description, tv_symptoms, tv_medicines, tv_precautions;
+    private TextView tv_name, tv_description, tv_symptoms, tv_medicines, tv_precautions, tv_doctor;
 
     private View mView;
     DiseaseViewHolder(@NonNull View itemView) {
@@ -149,12 +151,13 @@ class DiseaseViewHolder extends  RecyclerView.ViewHolder{
         mView = itemView;
     }
 
-    void setDetails(String d_name, String d_desc, String d_precautions, String d_symptoms, String d_medicines){
+    void setDetails(String d_name, String d_desc, String d_precautions, String d_symptoms, String d_medicines, String d_doctor){
         tv_name = mView.findViewById(R.id.text_view_disease_name);
         tv_description = mView.findViewById(R.id.text_view_disease_description);
         tv_symptoms = mView.findViewById(R.id.text_view_disease_symptoms);
         tv_medicines = mView.findViewById(R.id.text_view_disease_medicines);
         tv_precautions = mView.findViewById(R.id.text_view_disease_precautions);
+        tv_doctor = mView.findViewById(R.id.text_view_disease_doctor);
 
         if(d_desc.length() > 150){
             d_desc = d_desc.substring(0, 150)+"....";
@@ -169,7 +172,7 @@ class DiseaseViewHolder extends  RecyclerView.ViewHolder{
         tv_name.setText(d_name);
         tv_description.setText(d_desc);
         tv_symptoms.setText(d_symptoms);
-        tv_precautions.setText(d_precautions);
+        tv_doctor.setText("Consult Doctor: "+d_doctor);
         tv_medicines.setText(d_medicines);
     }
 
