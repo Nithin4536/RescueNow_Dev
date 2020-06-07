@@ -86,12 +86,15 @@ public class DoctorDashboardActivity extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
+            break;
             case R.id.toolbar_profile: {
                 Toast.makeText(this, "profile clicked", Toast.LENGTH_SHORT).show();
             }
+            break;
             default:
                 return super.onOptionsItemSelected(item);
         }
+        return super.onOptionsItemSelected(item);
     }
 
 }
