@@ -58,6 +58,9 @@ public class PatientDashboardActivity extends AppCompatActivity {
                 case R.id.hospitalFragment:
                     loadFragment(new PatientHospitalsFragment());
                     return true;
+                case R.id.consultFragment:
+                    loadFragment(new ConsultDoctors());
+                    return true;
                 default:
                     return false;
             }
