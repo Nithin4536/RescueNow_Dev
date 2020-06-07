@@ -23,6 +23,7 @@
             android:gravity="center"
             android:text="Symptoms Search"
             android:textSize="24sp"
+            android:textColor="@color/white"
             android:id="@+id/text_view_search"/>
 
         <EditText
@@ -40,7 +41,7 @@
             android:paddingRight="20dp"
             android:paddingBottom="10dp"
             android:hint="Eg: Fever, Headache"
-            android:textColorHint="@color/darkgray"
+            android:textColorHint="@color/white"
             android:textSize="16sp" />
 
         <ImageView

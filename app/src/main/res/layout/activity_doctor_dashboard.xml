@@ -20,6 +20,8 @@ tools:context=".doctor.DoctorDashboardActivity">
         android:layout_height="match_parent"
         android:id="@+id/container"
         android:layout_below="@id/toolbar"
+        android:background="@drawable/background"
+        android:scaleType="centerCrop"
         android:layout_above="@+id/bottom_nav_doctor"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
