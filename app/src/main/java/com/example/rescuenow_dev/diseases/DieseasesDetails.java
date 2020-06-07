@@ -80,6 +80,7 @@ public class DieseasesDetails extends YouTubeBaseActivity {
                 youTubePlayerView.initialize("AIzaSyCaXOyzL94451u0lXMJP3-2V39q0fJ-gzM", onInitializedListener);
             }
         });
+
     }
 
     private void initUI() {
@@ -91,9 +92,6 @@ public class DieseasesDetails extends YouTubeBaseActivity {
         diseasePrecautions = findViewById(R.id.dis_precautions);
         diseaseMedicines = findViewById(R.id.dis_medicines);
         materialToolbar = findViewById(R.id.toolbar);
-
-
-
 
     }
 }

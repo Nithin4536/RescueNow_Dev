@@ -87,8 +87,9 @@ public class AvailableRemedies extends Fragment {
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        final Intent intent = new Intent(getContext(), DieseasesDetails.class);
+                        final Intent intent = new Intent(getContext(), ModifyDiseases.class);
 
+                        intent.putExtra("disease_id",model.getId());
                         intent.putExtra("disease_name",model.getName());
                         intent.putExtra("disease_description",model.getDescription());
                         intent.putExtra("disease_precautions",model.getPrecautions());

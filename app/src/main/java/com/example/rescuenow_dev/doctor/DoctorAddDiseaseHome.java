@@ -106,6 +106,7 @@ public class DoctorAddDiseaseHome extends Fragment {
                     symptomsData.put("symptoms", symptoms);
                     symptomsData.put("medicines", medicines);
                     symptomsData.put("precautions", precautions);
+                    symptomsData.put("id", key);
                     symptomsData.put("url", "A-Mf38Q-E1U");
 
 
