@@ -28,6 +28,7 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="#000000" />
 
+
             <TextView
                 android:id="@+id/text_view_disease_description"
                 android:layout_width="wrap_content"
@@ -50,6 +51,18 @@
                 android:text="Symptoms"
                 android:textStyle="italic"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+            <TextView
+                android:id="@+id/text_view_disease_doctor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_view_disease_symptoms"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="Doctor"
+                android:textColor="@color/black"
+
+                />
 
             <TextView
                 android:id="@+id/text_view_disease_precautions"
