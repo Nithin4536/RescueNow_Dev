@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/blogDetails"
+    tools:context=".doctor.ModifyDiseases"
     android:background="@color/white">
 
     <RelativeLayout
@@ -33,12 +34,13 @@
 
         <EditText
             android:id="@+id/dis_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
             android:layout_marginTop="24dp"
+            android:inputType="textMultiLine"
             android:text="Disease Name"
-            android:textAllCaps="true"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="27sp"
@@ -56,12 +58,14 @@
 
         <EditText
             android:id="@+id/dis_symptoms"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="2dp"
             android:fontFamily="@font/work_sans"
             android:text="Symptoms"
+            android:inputType="textMultiLine"
+            android:layout_marginEnd="24dp"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:layout_below="@+id/tv_symptoms" />
@@ -86,6 +90,7 @@
             android:text="Description"
             android:textColor="@android:color/black"
             android:textSize="16sp"
+            android:inputType="textMultiLine"
             android:layout_below="@id/tv_description"
             app:lineHeight="28dp" />
 
@@ -112,6 +117,7 @@
             android:text="Medicines"
             android:textColor="@android:color/black"
             android:textSize="16sp"
+            android:inputType="textMultiLine"
             android:layout_below="@id/tv_medicines"
             app:lineHeight="28dp" />
 
@@ -138,6 +144,7 @@
             android:text="Precautions"
             android:textColor="@android:color/black"
             android:textSize="16sp"
+            android:inputType="textMultiLine"
             android:layout_below="@id/tv_precautions"
             app:lineHeight="28dp" />
 
@@ -146,8 +153,8 @@
             android:layout_below="@id/dis_precautions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Edit Disease Information"
-            android:id="@+id/add_disease"
+            android:text="Save Disease Information"
+            android:id="@+id/save_disease"
             android:layout_marginLeft="32dp"
             android:background="@color/colorPrimary"
             android:textColor="@color/white"

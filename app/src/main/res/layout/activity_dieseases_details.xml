@@ -34,7 +34,7 @@ android:background="@color/white">
 
     <TextView
         android:id="@+id/dis_name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
@@ -57,7 +57,7 @@ android:background="@color/white">
 
     <TextView
         android:id="@+id/dis_symptoms"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="2dp"
