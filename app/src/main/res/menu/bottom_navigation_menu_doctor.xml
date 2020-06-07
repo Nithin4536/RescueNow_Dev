@@ -7,7 +7,7 @@
 
     <item android:id="@+id/chatFragment"
         android:icon="@drawable/ic_inbox"
-        android:title="Chat with Patient"/>
+        android:title="View Messages"/>
 
     <item android:id="@+id/remediesFragment"
         android:icon="@drawable/ic_hospital"
