@@ -1,10 +1,13 @@
 package com.example.rescuenow_dev.doctor;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -12,9 +15,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rescuenow_dev.R;
+import com.example.rescuenow_dev.diseases.DieseasesDetails;
+import com.example.rescuenow_dev.diseases.Diseases;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,6 +45,14 @@ public class DoctorAddDiseaseHome extends Fragment {
     DatabaseReference SymptomsDatabaseReference, DiseasesDatabaseReference, UserDatabaseReference;
     Button addDiseaseBtn;
     String currentUserId;
+    Button mAddNewDisease, mViewAllDisease;
+    LinearLayout btnLayout, addLayout, avaDiseasesLayout;
+    RecyclerView mRecyclerView;
+    //Firebase Recycler options
+    FirebaseRecyclerOptions<Diseases> options;
+
+    //Database reference
+    DatabaseReference mDiseasesDatabase;
 
 
     public DoctorAddDiseaseHome() {
@@ -51,7 +68,7 @@ public class DoctorAddDiseaseHome extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         SymptomsDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Symptoms");
         DiseasesDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Diseases");
@@ -63,7 +80,35 @@ public class DoctorAddDiseaseHome extends Fragment {
         etSymptoms = view.findViewById(R.id.disease_symptom);
         etPrecautions = view.findViewById(R.id.disease_precautions);
         etMedicines = view.findViewById(R.id.disease_medicines);
+        mRecyclerView = view.findViewById(R.id.recycler_view_symtoms);
 
+        btnLayout = view.findViewById(R.id.ll1);
+        addLayout = view.findViewById(R.id.ll2);
+        avaDiseasesLayout = view.findViewById(R.id.ll3);
+
+        mAddNewDisease = view.findViewById(R.id.btn_add_disease);
+        mViewAllDisease = view.findViewById(R.id.btn_view_diseases);
+
+
+        mAddNewDisease.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnLayout.setVisibility(View.GONE);
+                avaDiseasesLayout.setVisibility(View.GONE);
+                addLayout.setVisibility(View.VISIBLE);
+            }
+        });
+
+        mViewAllDisease.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnLayout.setVisibility(View.GONE);
+                avaDiseasesLayout.setVisibility(View.VISIBLE);
+                addLayout.setVisibility(View.GONE);
+            }
+        });
+
+        //Add new disease
         addDiseaseBtn = view.findViewById(R.id.add_disease);
 
         addDiseaseBtn.setOnClickListener(new View.OnClickListener() {
@@ -72,24 +117,15 @@ public class DoctorAddDiseaseHome extends Fragment {
 
                 if (TextUtils.isEmpty(etDiseaseName.getText().toString())) {
                     etDiseaseName.setError("Enter Disease Name");
-                }
-                else if (TextUtils.isEmpty(etDescription.getText().toString())) {
+                } else if (TextUtils.isEmpty(etDescription.getText().toString())) {
                     etDescription.setError("Enter Disease Description");
-                }
-                else if(TextUtils.isEmpty(etSymptoms.getText().toString()))
-                {
+                } else if (TextUtils.isEmpty(etSymptoms.getText().toString())) {
                     etSymptoms.setError("Enter Disease Symptoms");
-                }
-                else if(TextUtils.isEmpty(etPrecautions.getText().toString()))
-                {
+                } else if (TextUtils.isEmpty(etPrecautions.getText().toString())) {
                     etPrecautions.setError("Enter Precautions");
-                }
-                else if(TextUtils.isEmpty(etMedicines.getText().toString()))
-                {
+                } else if (TextUtils.isEmpty(etMedicines.getText().toString())) {
                     etMedicines.setError("Enter Medicines");
-                }
-                else
-                {
+                } else {
 
                     name = etDiseaseName.getText().toString();
                     description = etDescription.getText().toString();
@@ -117,7 +153,7 @@ public class DoctorAddDiseaseHome extends Fragment {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             String doctorName;
-                            doctorName =  dataSnapshot.getValue().toString();
+                            doctorName = dataSnapshot.getValue().toString();
 
                             symptomsData.put("doctor", doctorName);
 
@@ -128,7 +164,8 @@ public class DoctorAddDiseaseHome extends Fragment {
                             SymptomsDatabaseReference.child(symptoms).child(key).updateChildren(symptomsData);
 
                             //add diseases id to doctor collection
-                            UserDatabaseReference.child(currentUserId).child("disease_postings").child(key).updateChildren(symptomsData);;
+                            UserDatabaseReference.child(currentUserId).child("disease_postings").child(key).updateChildren(symptomsData);
+
 
                             Toast.makeText(getContext(), "Disease Information is added successfully", Toast.LENGTH_SHORT).show();
                             clearData();
@@ -141,15 +178,19 @@ public class DoctorAddDiseaseHome extends Fragment {
                     });
 
 
-
                 }
             }
         });
 
+        mRecyclerView.setHasFixedSize(true);
 
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        getListofDiseases();
 
 
     }
+
+   
 
     private void clearData() {
         etDescription.setText("");
@@ -158,4 +199,41 @@ public class DoctorAddDiseaseHome extends Fragment {
         etPrecautions.setText("");
         etSymptoms.setText("");
     }
+
+}
+
+
+class DViewHolder extends  RecyclerView.ViewHolder {
+    private TextView tv_name, tv_description, tv_symptoms, tv_medicines, tv_precautions;
+
+    private View mView;
+    DViewHolder(@NonNull View itemView) {
+        super(itemView);
+        mView = itemView;
+    }
+
+    void setDetails(String d_name, String d_desc, String d_precautions, String d_symptoms, String d_medicines){
+        tv_name = mView.findViewById(R.id.text_view_disease_name);
+        tv_description = mView.findViewById(R.id.text_view_disease_description);
+        tv_symptoms = mView.findViewById(R.id.text_view_disease_symptoms);
+        tv_medicines = mView.findViewById(R.id.text_view_disease_medicines);
+        tv_precautions = mView.findViewById(R.id.text_view_disease_precautions);
+
+        if(d_desc.length() > 150){
+            d_desc = d_desc.substring(0, 150)+"....";
+        }
+
+        if(d_symptoms!=null){
+            if(d_symptoms.length() > 100){
+                d_symptoms = d_symptoms.substring(0, 100)+"...";
+            }
+        }
+
+        tv_name.setText(d_name);
+        tv_description.setText(d_desc);
+        tv_symptoms.setText(d_symptoms);
+        tv_precautions.setText(d_precautions);
+        tv_medicines.setText(d_medicines);
+    }
+
 }
