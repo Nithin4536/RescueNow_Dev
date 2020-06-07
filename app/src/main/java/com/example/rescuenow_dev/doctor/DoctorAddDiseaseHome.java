@@ -15,10 +15,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.rescuenow_dev.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,8 +33,9 @@ public class DoctorAddDiseaseHome extends Fragment {
 
     EditText etDiseaseName, etDescription, etSymptoms, etPrecautions, etMedicines;
     String name, description, symptoms, precautions, medicines;
-    DatabaseReference SymptomsDatabaseReference;
+    DatabaseReference SymptomsDatabaseReference, DiseasesDatabaseReference, UserDatabaseReference;
     Button addDiseaseBtn;
+    String currentUserId;
 
 
     public DoctorAddDiseaseHome() {
@@ -57,8 +54,10 @@ public class DoctorAddDiseaseHome extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         SymptomsDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Symptoms");
+        DiseasesDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Diseases");
+        UserDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
-
+        currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         etDiseaseName = view.findViewById(R.id.disease_name);
         etDescription = view.findViewById(R.id.disease_description);
         etSymptoms = view.findViewById(R.id.disease_symptom);
@@ -66,9 +65,6 @@ public class DoctorAddDiseaseHome extends Fragment {
         etMedicines = view.findViewById(R.id.disease_medicines);
 
         addDiseaseBtn = view.findViewById(R.id.add_disease);
-
-
-
 
         addDiseaseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,7 +96,8 @@ public class DoctorAddDiseaseHome extends Fragment {
                     symptoms = etSymptoms.getText().toString();
                     precautions = etPrecautions.getText().toString();
                     medicines = etMedicines.getText().toString();
-                    final String key = SymptomsDatabaseReference.child(symptoms).push().getKey();
+
+                    final String key = FirebaseDatabase.getInstance().getReference().child("Diseases").push().getKey();
 
                     final Map symptomsData = new HashMap<>();
 
@@ -111,8 +108,8 @@ public class DoctorAddDiseaseHome extends Fragment {
                     symptomsData.put("precautions", precautions);
                     symptomsData.put("url", "A-Mf38Q-E1U");
 
-                    DatabaseReference userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance()
-                    .getCurrentUser().getUid()).child("name");
+
+                    DatabaseReference userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("name");
 
 
                     userDb.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -123,22 +120,17 @@ public class DoctorAddDiseaseHome extends Fragment {
 
                             symptomsData.put("doctor", doctorName);
 
-                            SymptomsDatabaseReference
-                                    .child(symptoms).
-                                    child(key)
-                                    .updateChildren(symptomsData)
-                                    .addOnSuccessListener(new OnSuccessListener() {
-                                @Override
-                                public void onSuccess(Object o) {
-                                    Toast.makeText(getContext(), "Disease Information is added successfully", Toast.LENGTH_SHORT).show();
-                                    clearData();
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(getContext(), "Something went wrong check again!", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                            //Post to diseases collection
+                            DiseasesDatabaseReference.child(key).updateChildren(symptomsData);
+
+                            //post to symptoms collection
+                            SymptomsDatabaseReference.child(symptoms).child(key).updateChildren(symptomsData);
+
+                            //add diseases id to doctor collection
+                            UserDatabaseReference.child(currentUserId).child("disease_postings").child(key).updateChildren(symptomsData);;
+
+                            Toast.makeText(getContext(), "Disease Information is added successfully", Toast.LENGTH_SHORT).show();
+                            clearData();
                         }
 
                         @Override
