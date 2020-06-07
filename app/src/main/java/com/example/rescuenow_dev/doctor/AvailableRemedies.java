@@ -43,7 +43,7 @@ public class AvailableRemedies extends Fragment {
     //Current User
     FirebaseUser mFirebaseUser;
 
-    String doctorName;
+    String doctorName,currentUserId;
 
     public AvailableRemedies() {
         // Required empty public constructor
@@ -64,61 +64,41 @@ public class AvailableRemedies extends Fragment {
 
         mRecyclerView = view.findViewById(R.id.recycler_view_symtoms_doctor);
 
-
-        mDiseasesDatabase = FirebaseDatabase.getInstance().getReference().child("Diseases");
+        currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        mDiseasesDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("disease_postings");
         mRecyclerView.setHasFixedSize(true);
 
         //Layout manager, grid, horizontal/vertical
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
 
         firebaseSearch();
     }
 
     private void firebaseSearch() {
         options = new FirebaseRecyclerOptions.Builder<Diseases>().setQuery(mDiseasesDatabase, Diseases.class).build();
-        DatabaseReference userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance()
-                .getCurrentUser().getUid()).child("name");
-
-        userDb.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                doctorName =  dataSnapshot.getValue().toString();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
         FirebaseRecyclerAdapter<Diseases, DiseaseViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Diseases, DiseaseViewHolder>(
                 options
         ) {
             @Override
             protected void onBindViewHolder(@NonNull DiseaseViewHolder viewHolder, int position, @NonNull final Diseases model) {
+                viewHolder.setDetails(model.getName(), model.getDescription(), model.getPrecautions(), model.getSymptoms(), model.getMedicines());
 
+                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final Intent intent = new Intent(getContext(), DieseasesDetails.class);
 
-                if(model.getDoctor().equals(doctorName)){
-                    viewHolder.setDetails(model.getName(), model.getDescription(), model.getPrecautions(), model.getSymptoms(), model.getMedicines());
+                        intent.putExtra("disease_name",model.getName());
+                        intent.putExtra("disease_description",model.getDescription());
+                        intent.putExtra("disease_precautions",model.getPrecautions());
+                        intent.putExtra("disease_medicines", model.getMedicines());
+                        intent.putExtra("disease_symptoms", model.getSymptoms());
+                        intent.putExtra("disease_url", model.getUrl());
 
-                    viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(getContext(), DieseasesDetails.class);
-
-                            intent.putExtra("disease_name",model.getName());
-                            intent.putExtra("disease_description",model.getDescription());
-                            intent.putExtra("disease_precautions",model.getPrecautions());
-                            intent.putExtra("disease_medicines", model.getMedicines());
-                            intent.putExtra("disease_symptoms", model.getSymptoms());
-
-                            startActivity(intent);
-                        }
-                    });
-                }
-
-
+                        startActivity(intent);
+                    }
+                });
             }
 
             @NonNull
@@ -131,7 +111,6 @@ public class AvailableRemedies extends Fragment {
             }
         };
 
-
         firebaseRecyclerAdapter.startListening();
         mRecyclerView.setAdapter(firebaseRecyclerAdapter);
 
@@ -142,26 +121,25 @@ class DiseaseViewHolder extends  RecyclerView.ViewHolder {
     private TextView tv_name, tv_description, tv_symptoms, tv_medicines, tv_precautions;
 
     private View mView;
-
     DiseaseViewHolder(@NonNull View itemView) {
         super(itemView);
         mView = itemView;
     }
 
-    void setDetails(String d_name, String d_desc, String d_precautions, String d_symptoms, String d_medicines) {
+    void setDetails(String d_name, String d_desc, String d_precautions, String d_symptoms, String d_medicines){
         tv_name = mView.findViewById(R.id.text_view_disease_name);
         tv_description = mView.findViewById(R.id.text_view_disease_description);
         tv_symptoms = mView.findViewById(R.id.text_view_disease_symptoms);
         tv_medicines = mView.findViewById(R.id.text_view_disease_medicines);
         tv_precautions = mView.findViewById(R.id.text_view_disease_precautions);
 
-        if (d_desc.length() > 150) {
-            d_desc = d_desc.substring(0, 150) + "....";
+        if(d_desc.length() > 150){
+            d_desc = d_desc.substring(0, 150)+"....";
         }
 
-        if (d_symptoms != null) {
-            if (d_symptoms.length() > 100) {
-                d_symptoms = d_symptoms.substring(0, 100) + "...";
+        if(d_symptoms!=null){
+            if(d_symptoms.length() > 100){
+                d_symptoms = d_symptoms.substring(0, 100)+"...";
             }
         }
 
@@ -170,6 +148,6 @@ class DiseaseViewHolder extends  RecyclerView.ViewHolder {
         tv_symptoms.setText(d_symptoms);
         tv_precautions.setText(d_precautions);
         tv_medicines.setText(d_medicines);
-
     }
+
 }
