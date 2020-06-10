@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.rescuenow_dev.common.LoginActivity;
 import com.example.rescuenow_dev.R;
 import com.example.rescuenow_dev.patient.chat.PatientInboxFragment;
+import com.example.rescuenow_dev.patient.consult_doctors.ConsultDoctorsFragment;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -59,7 +60,7 @@ public class PatientDashboardActivity extends AppCompatActivity {
                     loadFragment(new PatientHospitalsFragment());
                     return true;
                 case R.id.consultFragment:
-                    loadFragment(new ConsultDoctors());
+                    loadFragment(new ConsultDoctorsFragment());
                     return true;
                 default:
                     return false;
