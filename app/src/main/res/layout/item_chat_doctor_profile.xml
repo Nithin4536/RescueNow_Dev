@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20sp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/viewmatchprofile"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Doctors's Name"
+                android:layout_gravity="center"
+                android:id="@+id/doctorName"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hospital"
+                android:textStyle="italic"
+                android:layout_gravity="center"
+                android:id="@+id/bioChat"
+                android:textSize="17sp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Users's Country"
+                android:layout_gravity="center"
+                android:id="@+id/userCountry"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
