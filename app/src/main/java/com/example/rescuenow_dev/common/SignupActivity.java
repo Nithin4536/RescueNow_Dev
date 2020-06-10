@@ -35,9 +35,9 @@ import java.util.Map;
 public class SignupActivity extends AppCompatActivity {
 
     private Button signupBtn;
-    private EditText mUserName, mUserEmail, mUserPassword, mUserAge, mHospitalName, mHospitalId;
+    private EditText mUserName, mUserEmail, mUserPassword, mUserAge, mHospitalName, mHospitalId, mSpeciality;
     private TextInputLayout textInputLayoutEmail, textInputLayoutPassword, textInputLayoutName, textInputLayoutAge;
-    private String name, email, password, age, gender, role, hospital_id, hospital_name;
+    private String name, email, password, age, gender, role, hospital_id, hospital_name, speciality;
     private Spinner mSpinner, mRoleSpinner;
     private AutoCompleteTextView mUserHospital;
     private ArrayAdapter<String> myGenderAdapter, mUserRoleAdapter;
@@ -143,6 +143,7 @@ public class SignupActivity extends AppCompatActivity {
         mRoleSpinner = findViewById(R.id.spinner_signup_role);
         mHospitalName = findViewById(R.id.edit_text_hospital);
         mHospitalId = findViewById(R.id.edit_text_hospital_id);
+        mSpeciality = findViewById(R.id.edit_text_speciality);
 
 
         textInputLayoutAge = findViewById(R.id.input_layout_signup_age);
@@ -181,10 +182,12 @@ public class SignupActivity extends AppCompatActivity {
                 {
                     mHospitalName.setVisibility(View.GONE);
                     mHospitalId.setVisibility(View.GONE);
+                    mSpeciality.setVisibility(View.GONE);
                 }
                 else {
                     mHospitalName.setVisibility(View.VISIBLE);
                     mHospitalId.setVisibility(View.VISIBLE);
+                    mSpeciality.setVisibility(View.VISIBLE);
                 }
             }
             @Override
@@ -228,6 +231,7 @@ public class SignupActivity extends AppCompatActivity {
             password = mUserPassword.getText().toString();
             age = mUserAge.getText().toString();
             gender =  mSpinner.getSelectedItem().toString().trim();
+            speciality = mSpeciality.getText().toString();
 
 
             saveToDb();
@@ -243,6 +247,10 @@ public class SignupActivity extends AppCompatActivity {
             {
                 mHospitalId.setError("Enter your Hospital ID");
             }
+            else if (TextUtils.isEmpty(mSpeciality.getText().toString()))
+            {
+                mHospitalId.setError("Enter your Hospital ID");
+            }
             else {
                 //Check for errors
                 name = mUserName.getText().toString();
@@ -252,6 +260,7 @@ public class SignupActivity extends AppCompatActivity {
                 gender =  mSpinner.getSelectedItem().toString().trim();
                 hospital_id = mHospitalId.getText().toString();
                 hospital_name = mHospitalName.getText().toString();
+                speciality = mSpeciality.getText().toString();
 
                 saveToDb();
             }
