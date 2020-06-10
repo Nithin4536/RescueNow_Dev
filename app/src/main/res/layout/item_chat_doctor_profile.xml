@@ -4,7 +4,8 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20sp">
+    android:padding="20sp"
+    >
 
 
     <LinearLayout
@@ -12,6 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/viewmatchprofile"
+        android:background="@drawable/bottom_border"
         >
 
 
@@ -28,6 +30,36 @@
                 android:text="Doctors's Id"
                 android:layout_gravity="center"
                 android:id="@+id/doctor_id"
+                android:visibility="gone"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Doctors's GENDER"
+                android:layout_gravity="center"
+                android:id="@+id/doctor_gender"
+                android:visibility="gone"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Doctors's Age"
+                android:layout_gravity="center"
+                android:id="@+id/doctor_age"
+                android:visibility="gone"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hospital Id"
+                android:layout_gravity="center"
+                android:id="@+id/hospital_id"
                 android:visibility="gone"
                 android:textSize="20sp"
                 />

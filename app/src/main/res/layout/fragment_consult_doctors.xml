@@ -3,14 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".patient.ConsultDoctors">
+    tools:context=".patient.consult_doctors.ConsultDoctorsFragment"
+    android:background="@color/white">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="32sp"
-        android:text="Consult Doctors" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recycler_view_doctors"
+        tools:listitem="@layout/item_chat_doctor_profile"/>
 
 </RelativeLayout>
