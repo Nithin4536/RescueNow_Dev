@@ -25,10 +25,29 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="Doctors's Id"
+                android:layout_gravity="center"
+                android:id="@+id/doctor_id"
+                android:visibility="gone"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="Doctors's Name"
                 android:layout_gravity="center"
-                android:id="@+id/doctorName"
+                android:id="@+id/doctor_name"
                 android:textSize="20sp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Doctor Email"
+                android:layout_gravity="center"
+                android:id="@+id/doctor_email"
+                android:textSize="17sp"
                 />
 
             <TextView
@@ -37,16 +56,16 @@
                 android:text="Hospital"
                 android:textStyle="italic"
                 android:layout_gravity="center"
-                android:id="@+id/bioChat"
+                android:id="@+id/doctor_hospital"
                 android:textSize="17sp"
                 />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Users's Country"
+                android:text="Speciality"
                 android:layout_gravity="center"
-                android:id="@+id/userCountry"
+                android:id="@+id/doctor_speciality"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 />
