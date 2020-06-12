@@ -3,13 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".patient.consult_doctors.ConsultDoctorsFragment"
-    android:background="@color/white">
+   >
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_doctors"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recycler_view_doctors"
-        tools:listitem="@layout/item_chat_doctor_profile"/>
+        tools:listitem="@layout/item_chat_doctor_profile" />
 
 </RelativeLayout>
