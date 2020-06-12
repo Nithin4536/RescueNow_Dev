@@ -87,12 +87,6 @@ public class ConsultDoctorsFragment extends Fragment {
                  for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
 
                      GetDoctorInformation(userSnapshot.getKey());
-                     //Loops through all child nodes
-    //                 String role;
-
-  //                   role = userSnapshot.child("role").getValue().toString();
-//                     Toast.makeText(getContext(), userSnapshot.getKey(), Toast.LENGTH_SHORT).show();
-
                  }
              }
             }

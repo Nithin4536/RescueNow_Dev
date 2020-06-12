@@ -8,10 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.rescuenow_dev.R;
-import com.example.rescuenow_dev.patient.consult_doctors.DoctorObject;
+import com.example.rescuenow_dev.patient.chatmessages.ChatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -49,21 +48,31 @@ public class DoctorProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 consultDoctor(doctorId);
+                goToChatRoom(doctorId);
             }
         });
 
 
     }
 
+    private void goToChatRoom(String doctorId) {
+        Bundle b = new Bundle();
+        Intent chatIntent = new Intent(DoctorProfile.this, ChatActivity.class);
+        b.putString("doctor_id",doctorId);
+        chatIntent.putExtras(b);
+        startActivity(chatIntent);
+
+    }
+
     private void consultDoctor(final String doctorId) {
 
-       // mUserDatabase.child(current_user).child("consult_connections").child(doctorId);
+        //mUserDatabase.child(current_user).child("consult_connections").child(doctorId);
 
         mChatDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                    Toast.makeText(getApplicationContext(), "Chat Room created", Toast.LENGTH_SHORT).show();
+                if(!dataSnapshot.child(current_user).child("consult_connections").exists()
+                &&!dataSnapshot.child(doctorId).child("consult_connections").exists()){
 
                     String chat_key =  FirebaseDatabase.getInstance().getReference().child("chat").push().getKey();
 

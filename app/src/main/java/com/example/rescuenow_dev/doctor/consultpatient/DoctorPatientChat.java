@@ -1,4 +1,4 @@
-package com.example.rescuenow_dev.doctor;
+package com.example.rescuenow_dev.doctor.consultpatient;
 
 import android.os.Bundle;
 

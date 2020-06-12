@@ -5,13 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.rescuenow_dev.R;
-import com.example.rescuenow_dev.doctor.DoctorProfile;
 import com.example.rescuenow_dev.patient.chatmessages.ChatActivity;
 
 public class ChatListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
