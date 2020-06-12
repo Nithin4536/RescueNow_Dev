@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.rescuenow_dev.R;
+import com.example.rescuenow_dev.patient.consult_doctors.DoctorObject;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,12 +23,12 @@ import java.util.Map;
 
 public class DoctorProfile extends AppCompatActivity {
 
-    private String d_name, d_speciality, d_hospitalId, d_hospitalName, d_gender, d_age,d_email;
+    private String current_user,d_name, d_speciality, d_hospitalId, d_hospitalName, d_gender, d_age,d_email;
     private TextView tvname, tvspeciality, tvemail, tvgender, tvage,tvhospitalname,tvhospitalid, mBack;
     Button btnContact;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
-    private DatabaseReference mUserDatabase;
+    private DatabaseReference mUserDatabase,mChatDatabase;
     String doctorId;
 
     @Override
@@ -34,15 +36,28 @@ public class DoctorProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_profile);
 
+        mAuth = FirebaseAuth.getInstance();
+        mChatDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
+
         Intent intent = getIntent();
         doctorId = intent.getStringExtra("doctorId");
+        current_user = mAuth.getCurrentUser().getUid();
 
         bindUi();
-        setDoctorData(doctorId);
+        setDoctorData();
+        btnContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                consultDoctor(doctorId);
+            }
+        });
+
 
     }
 
-    private void setDoctorData(String doctorId) {
+    
+
+    private void setDoctorData() {
         mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(doctorId);
 
         mUserDatabase.addValueEventListener(new ValueEventListener() {
@@ -112,6 +127,7 @@ public class DoctorProfile extends AppCompatActivity {
         tvhospitalid = findViewById(R.id.tv_hospital_id);
         tvhospitalname = findViewById(R.id.tv_hospital_name);
         mBack = findViewById(R.id.back);
+        btnContact = findViewById(R.id.con_doc);
 
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
