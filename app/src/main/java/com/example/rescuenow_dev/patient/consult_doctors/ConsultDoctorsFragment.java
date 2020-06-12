@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -66,6 +67,8 @@ public class ConsultDoctorsFragment extends Fragment {
 
         mDoctorLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mDoctorLayoutManager);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(),
+                DividerItemDecoration.VERTICAL));
 
         mDoctorAdapter = new ConsultDoctorsAdapter(getDataSetMatches(), getActivity());
         mRecyclerView.setAdapter(mDoctorAdapter);
