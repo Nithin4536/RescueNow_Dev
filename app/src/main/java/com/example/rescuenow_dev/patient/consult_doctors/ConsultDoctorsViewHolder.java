@@ -35,7 +35,7 @@ public class ConsultDoctorsViewHolder extends RecyclerView.ViewHolder implements
     public void onClick(View view) {
         final Intent intent = new Intent(view.getContext(), DoctorProfile.class);
         Bundle b = new Bundle();
-        b.putString("id",mDoctorId.getText().toString());
+        b.putString("doctorId",mDoctorId.getText().toString());
         intent.putExtras(b);
         view.getContext().startActivity(intent);
 
