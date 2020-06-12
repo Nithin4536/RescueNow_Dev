@@ -3,8 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="20sp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border_chat"
+    android:padding="12dp"
+    android:layout_margin="12dp"
     >
 
 
@@ -13,7 +15,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/viewmatchprofile"
-        android:background="@drawable/bottom_border"
         >
 
 
@@ -22,12 +23,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:padding="10dp">
+            >
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Doctors's Id"
+                android:textColor="@color/white"
                 android:layout_gravity="center"
                 android:id="@+id/doctor_id"
                 android:visibility="gone"
@@ -69,6 +71,7 @@
                 android:layout_height="wrap_content"
                 android:text="Doctors's Name"
                 android:layout_gravity="center"
+                android:textColor="@color/white"
                 android:id="@+id/doctor_name"
                 android:textSize="20sp"
                 />
@@ -77,6 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Doctor Email"
+                android:textColor="@color/white"
                 android:layout_gravity="center"
                 android:id="@+id/doctor_email"
                 android:textSize="17sp"
@@ -86,6 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Hospital"
+                android:textColor="@color/white"
                 android:textStyle="italic"
                 android:layout_gravity="center"
                 android:id="@+id/doctor_hospital"
@@ -99,6 +104,7 @@
                 android:layout_gravity="center"
                 android:id="@+id/doctor_speciality"
                 android:textSize="15sp"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 />
 
