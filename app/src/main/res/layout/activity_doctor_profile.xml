@@ -58,9 +58,10 @@
             android:layout_alignParentEnd="true"
             android:gravity="center"
             android:padding="10dp"
+            android:textStyle="bold"
             android:textColor="@color/black"
             android:text="Speciality"
-            android:textSize="20sp" />
+            android:textSize="30sp" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -93,7 +94,7 @@
                         android:background="@drawable/ic_account" />
 
                     <TextView
-                        android:id="@+id/tv_status"
+                        android:id="@+id/tv_hospital_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -122,7 +123,7 @@
                         android:layout_marginRight="10dp"/>
 
                     <TextView
-                        android:id="@+id/tv_bio"
+                        android:id="@+id/tv_hospital_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -213,6 +214,18 @@
 
                         android:text="Age" />
                 </LinearLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Contact Doctor"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@color/white"
+                    />
+
             </LinearLayout>
         </ScrollView>
 
