@@ -55,7 +55,35 @@ public class DoctorProfile extends AppCompatActivity {
 
     }
 
-    
+    private void consultDoctor(final String doctorId) {
+
+       // mUserDatabase.child(current_user).child("consult_connections").child(doctorId);
+
+        mChatDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    Toast.makeText(getApplicationContext(), "Chat Room created", Toast.LENGTH_SHORT).show();
+
+                    String chat_key =  FirebaseDatabase.getInstance().getReference().child("chat").push().getKey();
+
+                    //For Doctor
+                    mChatDatabase.child(doctorId).child("consult_connections").child(current_user).child("chatId").setValue(chat_key);
+
+                    //For Patient
+                    mChatDatabase.child(current_user).child("consult_connections").child(doctorId).child("chatId").setValue(chat_key);
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
 
     private void setDoctorData() {
         mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(doctorId);
