@@ -71,7 +71,7 @@ public class PatientInboxFragment extends Fragment {
 
     private void getAvailableDoctors() {
 
-        DatabaseReference userDb = FirebaseDatabase.getInstance().getReference().child("Users");
+        DatabaseReference userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("consult_connections");
         userDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
