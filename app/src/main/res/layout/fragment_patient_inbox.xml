@@ -6,17 +6,12 @@
     tools:context=".patient.chat.PatientInboxFragment"
     android:background="@color/white">
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/recyclerView"
             tools:listitem="@layout/item_chat_doctor_profile"
-            android:scrollbars="vertical">
-        </androidx.recyclerview.widget.RecyclerView>
-    </androidx.core.widget.NestedScrollView>
+            android:scrollbars="vertical"/>
 
 </RelativeLayout>
