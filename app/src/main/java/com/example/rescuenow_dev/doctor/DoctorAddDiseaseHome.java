@@ -191,9 +191,8 @@ public class DoctorAddDiseaseHome extends Fragment {
     }
 
     private void getListofDiseases() {
-        SymptomsDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Diseases");
 
-        options = new FirebaseRecyclerOptions.Builder<Diseases>().setQuery(SymptomsDatabaseReference, Diseases.class).build();
+        options = new FirebaseRecyclerOptions.Builder<Diseases>().setQuery(DiseasesDatabaseReference, Diseases.class).build();
 
         FirebaseRecyclerAdapter<Diseases, DViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Diseases, DViewHolder>(
                 options

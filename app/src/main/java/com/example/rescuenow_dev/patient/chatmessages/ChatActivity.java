@@ -67,6 +67,7 @@ public class ChatActivity extends AppCompatActivity {
         mChatAdapter = new ChatAdapter(getDataSetChat(), ChatActivity.this);
 
         mRecyclerView.setAdapter(mChatAdapter);
+
         mSendButton = findViewById(R.id.send);
         mSendEditText = findViewById(R.id.editTextMessage);
         mDoctorName = findViewById(R.id.matchName);
