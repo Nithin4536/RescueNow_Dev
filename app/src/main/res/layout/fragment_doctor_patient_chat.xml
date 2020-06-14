@@ -3,14 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".doctor.consultpatient.DoctorPatientChat">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Patient"
-        android:layout_centerInParent="true"
-        android:gravity="center"/>
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerViewPatients"
+        tools:listitem="@layout/item_chat_patient_profile"
+        android:scrollbars="vertical"/>
 
 
 </RelativeLayout>
