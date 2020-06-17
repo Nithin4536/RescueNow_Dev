@@ -72,6 +72,8 @@ public class ChatActivity extends AppCompatActivity {
         mSendEditText = findViewById(R.id.editTextMessage);
         mDoctorName = findViewById(R.id.matchName);
 
+        getChatId();
+
         mDatabaseDoctor.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -94,7 +96,6 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-        getChatId();
 
         mSendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,7 +141,7 @@ public class ChatActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
                     chatId = dataSnapshot.getValue().toString();
-                    mDatabaseChat = mDatabaseChat.child(chatId);
+                    mDatabaseChat = FirebaseDatabase.getInstance().getReference().child("Chat").child(chatId);
                     //after getting chat id get the messages
                     getChatMessages();
                 }

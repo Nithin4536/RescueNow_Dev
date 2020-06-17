@@ -37,7 +37,7 @@ public class DoctorProfile extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mChatDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
-
+        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
         Intent intent = getIntent();
         doctorId = intent.getStringExtra("doctorId");
         current_user = mAuth.getCurrentUser().getUid();
@@ -66,15 +66,17 @@ public class DoctorProfile extends AppCompatActivity {
 
     private void consultDoctor(final String doctorId) {
 
-        //mUserDatabase.child(current_user).child("consult_connections").child(doctorId);
 
         mChatDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(!dataSnapshot.child(current_user).child("consult_connections").exists()
-                &&!dataSnapshot.child(doctorId).child("consult_connections").exists()){
+                if(!dataSnapshot.child(current_user).child("consult_connections").child(doctorId).exists()
+                &&!dataSnapshot.child(doctorId).child("consult_connections").child(current_user).exists()){
 
                     String chat_key =  FirebaseDatabase.getInstance().getReference().child("chat").push().getKey();
+
+                    //Chat dashboard
+
 
                     //For Doctor
                     mChatDatabase.child(doctorId).child("consult_connections").child(current_user).child("chatId").setValue(chat_key);
