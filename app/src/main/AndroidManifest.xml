@@ -22,7 +22,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".patient.chatmessages.ChatActivity"></activity>
+        <activity android:name=".common.UserSettingsActivity"></activity>
+        <activity android:name=".patient.chatmessages.ChatActivity" />
         <activity android:name=".doctor.DoctorProfile" />
         <activity android:name=".doctor.ModifyDiseases" />
         <activity android:name=".diseases.DieseasesDetails" />

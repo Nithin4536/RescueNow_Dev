@@ -2,6 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+    <item
+        android:id="@+id/toolbar_diseases"
+        android:icon="@drawable/ic_injuries"
+        android:title="Signout"
+        android:iconTint="@color/white"
+        app:showAsAction="always"
+        />
+
+
     <item
         android:id="@+id/toolbar_profile"
         android:icon="@drawable/ic_account"
@@ -9,12 +19,6 @@
         app:showAsAction="always"
         />
 
-    <item
-        android:id="@+id/toolbar_signout"
-        android:icon="@drawable/ic_power_settings"
-        android:title="Signout"
-        app:showAsAction="always"
-        />
 
 
 </menu>
