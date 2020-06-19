@@ -20,12 +20,17 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static java.text.DateFormat.getDateTimeInstance;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -118,6 +123,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private void sendMessage() {
         String sendMessageText = mSendEditText.getText().toString();
+
         if(!sendMessageText.isEmpty()){
 
             DatabaseReference newMessageDb = mDatabaseChat.push();
@@ -125,6 +131,7 @@ public class ChatActivity extends AppCompatActivity {
             Map newMessage = new HashMap();
             newMessage.put("senderId", currentUserId);
             newMessage.put("message", sendMessageText);
+            newMessage.put("timeStamp", ServerValue.TIMESTAMP);
 
             newMessageDb.setValue(newMessage);
         }
@@ -160,6 +167,7 @@ public class ChatActivity extends AppCompatActivity {
                 if(dataSnapshot.exists()){
                     String message = null;
                     String createdByUser = null;
+                    String timeStamp = null;
 
                     if(dataSnapshot.child("message").getValue()!= null){
                         message = dataSnapshot.child("message").getValue().toString();
@@ -170,6 +178,10 @@ public class ChatActivity extends AppCompatActivity {
 
                     }
 
+                    if(dataSnapshot.child("timeStamp").getValue()!= null){
+                        timeStamp = getTimeDate(Long.parseLong(dataSnapshot.child("timeStamp").getValue().toString()));
+                    }
+
                     if(message!=null && createdByUser !=null){
                         Boolean currentUserBoolean = false;
 
@@ -177,7 +189,7 @@ public class ChatActivity extends AppCompatActivity {
                             currentUserBoolean = true;
                         }
 
-                        ChatObject newMessage = new ChatObject(message, currentUserBoolean);
+                        ChatObject newMessage = new ChatObject(message, currentUserBoolean, timeStamp);
                         resultsChat.add(newMessage);
                         mChatAdapter.notifyDataSetChanged();
                     }
@@ -199,6 +211,15 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
+    public static String getTimeDate(long timestamp){
+        try{
+            DateFormat dateFormat = getDateTimeInstance();
+            Date netDate = (new Date(timestamp));
+            return dateFormat.format(netDate);
+        } catch(Exception e) {
+            return "date";
+        }
+    }
 
     private ArrayList<ChatObject> resultsChat = new ArrayList<ChatObject>();
 
