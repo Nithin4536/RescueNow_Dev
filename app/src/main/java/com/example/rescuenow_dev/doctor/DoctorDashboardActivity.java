@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.rescuenow_dev.common.AccountFragment;
 import com.example.rescuenow_dev.common.LoginActivity;
 import com.example.rescuenow_dev.R;
 import com.example.rescuenow_dev.doctor.consultpatient.DoctorPatientChat;
@@ -81,15 +82,8 @@ public class DoctorDashboardActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.toolbar_signout: {
-                mAuth.signOut();
-                Intent intent = new Intent(DoctorDashboardActivity.this, LoginActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-            }
-            break;
             case R.id.toolbar_profile: {
-                Toast.makeText(this, "profile clicked", Toast.LENGTH_SHORT).show();
+                loadFragment(new AccountFragment());
             }
             break;
             default:

@@ -9,8 +9,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.rescuenow_dev.common.AccountFragment;
 import com.example.rescuenow_dev.common.LoginActivity;
 import com.example.rescuenow_dev.R;
 import com.example.rescuenow_dev.patient.chat.PatientInboxFragment;
@@ -25,6 +28,7 @@ public class PatientDashboardActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     MaterialToolbar mToolbar;
     BottomNavigationView bottomNavigationView;
+    Button mAllDiseases;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +37,6 @@ public class PatientDashboardActivity extends AppCompatActivity {
 
         //Firebase instance
         mAuth = FirebaseAuth.getInstance();
-
 
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
@@ -88,18 +91,16 @@ public class PatientDashboardActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.toolbar_signout: {
-                mAuth.signOut();
-                Toast.makeText(this, "Logged out successfully...", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(PatientDashboardActivity.this, LoginActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-            }
             case R.id.toolbar_profile: {
-
+                loadFragment(new AccountFragment());
             }
-            default:
-                return super.onOptionsItemSelected(item);
+            break;
+            case R.id.toolbar_diseases: {
+                loadFragment(new AllAvailableDiseases());
+                return true;
+            }
+
         }
+        return super.onOptionsItemSelected(item);
     }
 }
