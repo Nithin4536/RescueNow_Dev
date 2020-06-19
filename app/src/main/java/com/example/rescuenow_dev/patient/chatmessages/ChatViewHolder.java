@@ -13,11 +13,12 @@ public class ChatViewHolder extends RecyclerView.ViewHolder {
 
     public TextView mMessage;
     public LinearLayout mContainer;
+    public TextView mtime;
 
     public ChatViewHolder(@NonNull View itemView) {
         super(itemView);
         mMessage = itemView.findViewById(R.id.userMessage);
         mContainer = itemView.findViewById(R.id.container);
-
+        mtime = itemView.findViewById(R.id.messageTime);
     }
 }
