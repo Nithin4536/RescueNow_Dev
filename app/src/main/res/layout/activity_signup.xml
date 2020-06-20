@@ -295,7 +295,7 @@
                 android:id="@+id/button_sign_up"
                 app:cornerRadius="4dp"
                 android:textSize="16sp"
-                android:layout_below="@id/edit_text_hospital_id"
+                android:layout_below="@id/edit_text_speciality"
 
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="32dp"
