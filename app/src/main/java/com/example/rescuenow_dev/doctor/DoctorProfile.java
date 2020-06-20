@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.rescuenow_dev.R;
 import com.example.rescuenow_dev.patient.chatmessages.ChatActivity;
@@ -28,7 +29,8 @@ public class DoctorProfile extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
     private DatabaseReference mUserDatabase,mChatDatabase;
-    String doctorId;
+    String doctorId, chatId;
+    String chat_key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +58,9 @@ public class DoctorProfile extends AppCompatActivity {
     }
 
     private void goToChatRoom(String doctorId) {
-        Bundle b = new Bundle();
         Intent chatIntent = new Intent(DoctorProfile.this, ChatActivity.class);
-        b.putString("doctor_id",doctorId);
-        chatIntent.putExtras(b);
+        chatIntent.putExtra("doctor_id",doctorId);
+        chatIntent.putExtra("chat_id", chat_key);
         startActivity(chatIntent);
 
     }
@@ -73,7 +74,7 @@ public class DoctorProfile extends AppCompatActivity {
                 if(!dataSnapshot.child(current_user).child("consult_connections").child(doctorId).exists()
                 &&!dataSnapshot.child(doctorId).child("consult_connections").child(current_user).exists()){
 
-                    String chat_key =  FirebaseDatabase.getInstance().getReference().child("chat").push().getKey();
+                     chat_key =  FirebaseDatabase.getInstance().getReference().child("chat").push().getKey();
 
                     //Chat dashboard
 

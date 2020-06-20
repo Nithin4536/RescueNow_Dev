@@ -51,7 +51,10 @@ public class ChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
         doctorId = getIntent().getExtras().getString("doctor_id");
+        chatId = getIntent().getExtras().getString("chat_id");
+
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
