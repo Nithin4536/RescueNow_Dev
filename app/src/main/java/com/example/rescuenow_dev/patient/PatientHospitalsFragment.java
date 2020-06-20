@@ -48,6 +48,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
@@ -134,8 +135,8 @@ public class PatientHospitalsFragment extends Fragment implements OnMapReadyCall
         mGoogleMap = googleMap;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ActivityCompat.checkSelfPermission(getContext(),
-                permission.ACCESS_COARSE_LOCATION) != PERMISSION_GRANTED) {
-            requestPermissions(new String[]{permission.ACCESS_COARSE_LOCATION}, 1000);
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1000);
 
         } else {
             LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
@@ -144,11 +145,14 @@ public class PatientHospitalsFragment extends Fragment implements OnMapReadyCall
             latitude = location.getLatitude();
             longitude = location.getLongitude();
 
-            mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-            CameraPosition myCurrentLocation = CameraPosition.builder().target(new LatLng(latitude, longitude))
-                    .zoom(15).bearing(0).tilt(45).build();
+            mGoogleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 
-            mGoogleMap.moveCamera(CameraUpdateFactory.newCameraPosition(myCurrentLocation));
+            mGoogleMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(latitude, longitude))
+                    .title("Current"));
+            CameraPosition CurrentLoc = CameraPosition.builder().target(new LatLng(latitude, longitude)).zoom(20).bearing(0).tilt(45).build();
+
+            mGoogleMap.moveCamera(CameraUpdateFactory.newCameraPosition(CurrentLoc));
 
         }
     }
@@ -171,10 +175,9 @@ public class PatientHospitalsFragment extends Fragment implements OnMapReadyCall
         currentLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ActivityCompat.checkSelfPermission(getContext(),
-                        permission.ACCESS_COARSE_LOCATION) != PERMISSION_GRANTED) {
-                    requestPermissions(new String[]{permission.ACCESS_COARSE_LOCATION}, 1000);
+                        Manifest.permission.ACCESS_COARSE_LOCATION) != PERMISSION_GRANTED) {
+                    requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1000);
 
                 } else {
                     LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
@@ -183,11 +186,14 @@ public class PatientHospitalsFragment extends Fragment implements OnMapReadyCall
                     latitude = location.getLatitude();
                     longitude = location.getLongitude();
 
-                    mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-                    CameraPosition myCurrentLocation = CameraPosition.builder().target(new LatLng(latitude, longitude))
-                            .zoom(15).bearing(0).tilt(45).build();
+                    mGoogleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 
-                    mGoogleMap.moveCamera(CameraUpdateFactory.newCameraPosition(myCurrentLocation));
+                    mGoogleMap.addMarker(new MarkerOptions()
+                            .position(new LatLng(latitude, longitude))
+                            .title("Current"));
+                    CameraPosition CurrentLoc = CameraPosition.builder().target(new LatLng(latitude, longitude)).zoom(20).bearing(0).tilt(45).build();
+
+                    mGoogleMap.moveCamera(CameraUpdateFactory.newCameraPosition(CurrentLoc));
 
                 }
             }

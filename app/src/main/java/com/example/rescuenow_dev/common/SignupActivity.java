@@ -107,6 +107,7 @@ public class SignupActivity extends AppCompatActivity {
                     userInfo.put("gender", gender);
                     userInfo.put("age", age);
                     userInfo.put("role", role);
+                    userInfo.put("speciality", speciality);
 
                     if(role.equals("Doctor"))
                     {
