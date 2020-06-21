@@ -24,31 +24,15 @@
             android:layout_marginBottom="30dp"/>
 
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="105dp"
-            android:layout_height="105dp"
-            app:cardCornerRadius="250dp"
-            app:cardBackgroundColor="@color/white"
-            android:layout_gravity="center">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                app:cardCornerRadius="250dp">
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/ic_account"
-                    android:backgroundTint="@color/black"
-                    android:id="@+id/profileimage"
-                    android:scaleType="centerCrop"
-                    />
-
-            </androidx.cardview.widget.CardView>
-        </androidx.cardview.widget.CardView>
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PROFILE SETTINGS"
+            android:textAlignment="center"
+            android:textSize="26dp"
+            android:textStyle="bold"
+            />
+       
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -70,9 +54,11 @@
                     android:textColor="@color/black"/>
 
                 <EditText
-                    android:layout_width="60sp"
+                    android:layout_width="0dp"
+                    android:background="@drawable/bottom_border"
                     android:layout_height="wrap_content"
                     android:hint="User Name"
+                    android:padding="12dp"
                     android:focusable="auto"
                     android:layout_weight="0.8"
                     android:id="@+id/username"
@@ -89,18 +75,20 @@
                 android:padding="10sp">
 
                 <TextView
-                    android:layout_width="40sp"
+                    android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:text="Email"
                     android:layout_weight="0.2"
                     android:textColor="@color/black"/>
 
                 <TextView
-                    android:layout_width="60sp"
+                    android:enabled="false"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="User Email ID"
-                    android:focusable="auto"
+                    android:padding="12dp"
                     android:layout_weight="0.8"
+                    android:background="@drawable/bottom_border"
                     android:id="@+id/useremail"
                     android:layout_marginLeft="20dp"
                     android:textColor="@color/black"
@@ -123,16 +111,16 @@
                     android:textColor="@color/black"/>
 
                 <EditText
-                    android:layout_width="60sp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="User Age"
                     android:focusable="auto"
-                    android:layout_weight="0.8"
+                    android:layout_weight="0.6"
                     android:id="@+id/userage"
-                    android:layout_marginLeft="20dp"
-                    android:maxLength="2"
+                    android:padding="12dp"
+                    android:background="@drawable/bottom_border"
                     android:inputType="number"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     />
 
             </LinearLayout>
@@ -153,26 +141,17 @@
                     android:textColor="@color/black"/>
 
                 <TextView
-                    android:layout_width="60sp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
                     android:hint="Gender"
-                    android:focusable="auto"
+                    android:padding="12dp"
                     android:layout_weight="0.8"
-                    android:id="@+id/gender"
+                    android:background="@drawable/bottom_border"
+                    android:id="@+id/userGender"
+                    android:enabled="false"
                     android:layout_marginLeft="20dp"
-                    android:maxLength="20"
-                    android:textSize="18sp"
                     android:textColor="@color/black"
                     />
-
-                <Spinner
-                    android:layout_width="wrap_content"
-                    android:layout_marginLeft="35dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.8"
-                    android:id="@+id/spinner"
-                    android:layout_gravity="center_vertical" />
 
             </LinearLayout>
 
@@ -192,18 +171,6 @@
                     android:layout_marginRight="8dp"
                     android:background="@drawable/primary_bg"
                     android:textColor="@color/white"/>
-
-                <Button
-                    android:layout_width="150dp"
-                    android:layout_height="40dp"
-                    android:text="Edit Profile"
-                    android:layout_marginLeft="8dp"
-                    android:id="@+id/editprofile"
-                    android:layout_gravity="center"
-                    android:background="@drawable/bottom_border"
-                    android:textColor="@color/black"/>
-
-
 
             </LinearLayout>
 
