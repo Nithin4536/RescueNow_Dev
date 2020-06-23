@@ -1,5 +1,6 @@
 package com.example.rescuenow_dev.doctor;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -17,8 +18,11 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,13 +30,14 @@ import java.util.Map;
 public class ModifyDiseases extends YouTubeBaseActivity {
 
     EditText diseaseTitle, diseaseDescription, diseaseSymptoms, diseasePrecautions, diseaseMedicines;
-    String disease_title,disease_id, disease_description, disease_symptoms, disease_precautions, disease_medicines, disease_url;
+    String disease_title,disease_id, disease_description, disease_symptoms, disease_precautions, disease_medicines, disease_url, role;
     private MaterialToolbar materialToolbar;
     YouTubePlayerView youTubePlayerView;
     YouTubePlayer.OnInitializedListener onInitializedListener;
     Button mSaveDisease;
     //Database reference
     DatabaseReference mSymptomsDatabase, mUsersDatabase, mDiseasesDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,8 @@ public class ModifyDiseases extends YouTubeBaseActivity {
         disease_symptoms = getIntent().getStringExtra("disease_symptoms");
         disease_precautions = getIntent().getStringExtra("disease_precautions");
         disease_url = getIntent().getStringExtra("disease_url");
+
+
 
         initUI();
         setUI();
@@ -89,6 +96,8 @@ public class ModifyDiseases extends YouTubeBaseActivity {
                 youTubePlayerView.initialize("AIzaSyCaXOyzL94451u0lXMJP3-2V39q0fJ-gzM", onInitializedListener);
             }
         });
+
+
 
         mSaveDisease.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,6 +149,28 @@ public class ModifyDiseases extends YouTubeBaseActivity {
         diseaseMedicines = findViewById(R.id.dis_medicines);
         materialToolbar = findViewById(R.id.toolbar);
         mSaveDisease = findViewById(R.id.save_disease);
+
+        FirebaseDatabase.getInstance().getReference().child("Users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("role").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                role = dataSnapshot.getValue(String.class);
+                if(role.equals("Patient")){
+                    diseaseDescription.setEnabled(false);
+                    diseaseTitle.setEnabled(false);
+                    diseasePrecautions.setEnabled(false);
+                    diseaseSymptoms.setEnabled(false);
+                    diseaseMedicines.setEnabled(false);
+                    mSaveDisease.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
     }
