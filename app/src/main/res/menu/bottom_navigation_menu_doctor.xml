@@ -11,7 +11,7 @@
 
     <item android:id="@+id/remediesFragment"
         android:icon="@drawable/ic_hospital"
-        android:title="Remedies"/>
+        android:title="Modify Diseases"/>
 
 
 </menu>
