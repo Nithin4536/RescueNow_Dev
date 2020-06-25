@@ -94,11 +94,18 @@
                         android:background="@drawable/ic_account" />
 
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="Hospital ID "
+                        />
+
+                    <TextView
                         android:id="@+id/tv_hospital_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-
+                        android:textColor="@color/black"
                         android:text="Hospital Id" />
 
                 </LinearLayout>
@@ -123,10 +130,18 @@
                         android:layout_marginRight="10dp"/>
 
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="Hospital Name "
+                        />
+
+                    <TextView
                         android:id="@+id/tv_hospital_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:textColor="@color/black"
                         android:text="Hospital name" />
 
                 </LinearLayout>
@@ -151,9 +166,17 @@
                         android:background="@drawable/ic_email" />
 
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="Email "
+                       />
+
+                    <TextView
                         android:id="@+id/tv_email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/black"
                         android:layout_gravity="center_vertical"
                         android:text="Email" />
 
@@ -179,11 +202,18 @@
                         android:background="@drawable/ic_account" />
 
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="Gender "
+                        />
+
+                    <TextView
                         android:id="@+id/tv_gender"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-
+                        android:textColor="@color/black"
                         android:text="Gender" />
                 </LinearLayout>
 
@@ -206,12 +236,20 @@
                         android:backgroundTint="@color/black"
                         android:background="@drawable/ic_account"/>
 
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="Age "
+                        />
+
                     <TextView
                         android:id="@+id/tv_age"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-
+                        android:textColor="@color/black"
                         android:text="Age" />
                 </LinearLayout>
 

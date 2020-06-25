@@ -128,9 +128,9 @@ public class DoctorProfile extends AppCompatActivity {
                         tvspeciality.setText(d_speciality);
                     }
 
-                    if (map.get("age") != null) {
-                        d_age = map.get("age").toString();
-                        tvage.setText(d_age);
+                    if (map.get("gender") != null) {
+                        d_gender = map.get("gender").toString();
+                        tvgender.setText(d_gender);
                     }
 
                     if (map.get("hospital_id") != null) {
