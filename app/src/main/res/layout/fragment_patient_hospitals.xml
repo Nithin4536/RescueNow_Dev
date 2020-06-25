@@ -28,7 +28,7 @@
         android:layout_height="40dp"
         android:id="@+id/my_location"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
         android:layout_margin="20dp"
         android:backgroundTint="@color/colorPrimary"
         android:background="@drawable/ic_my_location"
