@@ -50,7 +50,6 @@ public class DoctorProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 consultDoctor(doctorId);
-                goToChatRoom(doctorId);
             }
         });
 
@@ -58,10 +57,8 @@ public class DoctorProfile extends AppCompatActivity {
     }
 
     private void goToChatRoom(String doctorId) {
-        Intent chatIntent = new Intent(DoctorProfile.this, ChatActivity.class);
-        chatIntent.putExtra("doctor_id",doctorId);
-        chatIntent.putExtra("chat_id", chat_key);
-        startActivity(chatIntent);
+
+
 
     }
 
@@ -85,8 +82,17 @@ public class DoctorProfile extends AppCompatActivity {
                     //For Patient
                     mChatDatabase.child(current_user).child("consult_connections").child(doctorId).child("chatId").setValue(chat_key);
 
-
                 }
+                else
+                {
+                    chat_key= dataSnapshot.child(current_user).child("consult_connections").child(doctorId).child("chatId").getValue().toString();
+                }
+
+                Intent chatIntent = new Intent(DoctorProfile.this, ChatActivity.class);
+                chatIntent.putExtra("doctor_id",doctorId);
+                chatIntent.putExtra("chat_id", chat_key);
+                startActivity(chatIntent);
+
             }
 
             @Override
