@@ -40,8 +40,8 @@ import java.util.Map;
 public class DoctorAddDiseaseHome extends Fragment {
 
 
-    EditText etDiseaseName, etDescription, etSymptoms, etPrecautions, etMedicines;
-    String name, description, symptoms, precautions, medicines;
+    EditText etDiseaseName, etDescription, etSymptoms, etPrecautions, etMedicines ,etUrl;
+    String name, description, symptoms, precautions, medicines, url;
     DatabaseReference SymptomsDatabaseReference, DiseasesDatabaseReference, UserDatabaseReference;
     Button addDiseaseBtn;
     String currentUserId;
@@ -80,6 +80,7 @@ public class DoctorAddDiseaseHome extends Fragment {
         etSymptoms = view.findViewById(R.id.disease_symptom);
         etPrecautions = view.findViewById(R.id.disease_precautions);
         etMedicines = view.findViewById(R.id.disease_medicines);
+        etUrl = view.findViewById(R.id.disease_url);
         mRecyclerView = view.findViewById(R.id.recycler_view_symtoms);
 
         btnLayout = view.findViewById(R.id.ll1);
@@ -125,6 +126,9 @@ public class DoctorAddDiseaseHome extends Fragment {
                     etPrecautions.setError("Enter Precautions");
                 } else if (TextUtils.isEmpty(etMedicines.getText().toString())) {
                     etMedicines.setError("Enter Medicines");
+                }
+                else if (TextUtils.isEmpty(etUrl.getText().toString())) {
+                    etUrl.setError("Enter Medicines");
                 } else {
 
                     name = etDiseaseName.getText().toString();
@@ -132,6 +136,7 @@ public class DoctorAddDiseaseHome extends Fragment {
                     symptoms = etSymptoms.getText().toString();
                     precautions = etPrecautions.getText().toString();
                     medicines = etMedicines.getText().toString();
+                    url = etUrl.getText().toString();
 
                     final String key = FirebaseDatabase.getInstance().getReference().child("Diseases").push().getKey();
 
@@ -143,7 +148,7 @@ public class DoctorAddDiseaseHome extends Fragment {
                     symptomsData.put("medicines", medicines);
                     symptomsData.put("precautions", precautions);
                     symptomsData.put("id", key);
-                    symptomsData.put("url", "A-Mf38Q-E1U");
+                    symptomsData.put("url", url);
 
 
                     DatabaseReference userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("name");
