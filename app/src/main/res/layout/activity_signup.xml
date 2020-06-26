@@ -281,6 +281,22 @@
                 android:layout_marginLeft="32dp"
                 />
 
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="   Studies"
+                android:padding="16dp"
+                android:background="@drawable/bottom_border"
+                android:id="@+id/edit_text_studies"
+                android:visibility="visible"
+                android:drawableTint="@color/darkgray"
+                android:layout_below="@id/edit_text_speciality"
+                android:layout_marginRight="32dp"
+                android:layout_marginTop="4dp"
+                android:drawableLeft="@drawable/ic_hospital"
+                android:layout_marginLeft="32dp"
+                />
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -295,7 +311,7 @@
                 android:id="@+id/button_sign_up"
                 app:cornerRadius="4dp"
                 android:textSize="16sp"
-                android:layout_below="@id/edit_text_speciality"
+                android:layout_below="@id/edit_text_studies"
 
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="32dp"

@@ -35,9 +35,9 @@ import java.util.Map;
 public class SignupActivity extends AppCompatActivity {
 
     private Button signupBtn;
-    private EditText mUserName, mUserEmail, mUserPassword, mUserAge, mHospitalName, mHospitalId, mSpeciality;
+    private EditText mUserName, mUserEmail, mUserPassword, mUserAge, mHospitalName, mHospitalId, mSpeciality, mStudies;
     private TextInputLayout textInputLayoutEmail, textInputLayoutPassword, textInputLayoutName, textInputLayoutAge;
-    private String name, email, password, age, gender, role, hospital_id, hospital_name, speciality;
+    private String name, email, password, age, gender, role, hospital_id, hospital_name, speciality, studies;
     private Spinner mSpinner, mRoleSpinner;
     private AutoCompleteTextView mUserHospital;
     private ArrayAdapter<String> myGenderAdapter, mUserRoleAdapter;
@@ -107,17 +107,16 @@ public class SignupActivity extends AppCompatActivity {
                     userInfo.put("gender", gender);
                     userInfo.put("age", age);
                     userInfo.put("role", role);
-                    userInfo.put("speciality", speciality);
 
                     if(role.equals("Doctor"))
                     {
                         userInfo.put("hospital_id", hospital_id);
                         userInfo.put("hospital_name", hospital_name);
-                        currentUserDb.updateChildren(userInfo);
+                        userInfo.put("speciality", speciality);
+                        userInfo.put("studies", studies);
+
                     }
-                    else {
-                        currentUserDb.updateChildren(userInfo);
-                    }
+                    currentUserDb.updateChildren(userInfo);
 
                     Toast.makeText(SignupActivity.this, "Registration Successful. Please wait...", Toast.LENGTH_SHORT).show();
 
@@ -145,6 +144,7 @@ public class SignupActivity extends AppCompatActivity {
         mHospitalName = findViewById(R.id.edit_text_hospital);
         mHospitalId = findViewById(R.id.edit_text_hospital_id);
         mSpeciality = findViewById(R.id.edit_text_speciality);
+        mStudies = findViewById(R.id.edit_text_studies);
 
 
         textInputLayoutAge = findViewById(R.id.input_layout_signup_age);
@@ -184,11 +184,13 @@ public class SignupActivity extends AppCompatActivity {
                     mHospitalName.setVisibility(View.GONE);
                     mHospitalId.setVisibility(View.GONE);
                     mSpeciality.setVisibility(View.GONE);
+                    mStudies.setVisibility(View.GONE);
                 }
                 else {
                     mHospitalName.setVisibility(View.VISIBLE);
                     mHospitalId.setVisibility(View.VISIBLE);
                     mSpeciality.setVisibility(View.VISIBLE);
+                    mStudies.setVisibility(View.VISIBLE);
                 }
             }
             @Override
@@ -250,7 +252,11 @@ public class SignupActivity extends AppCompatActivity {
             }
             else if (TextUtils.isEmpty(mSpeciality.getText().toString()))
             {
-                mHospitalId.setError("Enter your Hospital ID");
+                mSpeciality.setError("Enter your Speciality");
+            }
+            else if (TextUtils.isEmpty(mStudies.getText().toString()))
+            {
+                mStudies.setError("Enter your Studies");
             }
             else {
                 //Check for errors
@@ -261,6 +267,7 @@ public class SignupActivity extends AppCompatActivity {
                 gender =  mSpinner.getSelectedItem().toString().trim();
                 hospital_id = mHospitalId.getText().toString();
                 hospital_name = mHospitalName.getText().toString();
+                studies = mStudies.getText().toString();
                 speciality = mSpeciality.getText().toString();
 
                 saveToDb();

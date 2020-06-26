@@ -23,8 +23,8 @@ import java.util.Map;
 
 public class DoctorProfile extends AppCompatActivity {
 
-    private String current_user,d_name, d_speciality, d_hospitalId, d_hospitalName, d_gender, d_age,d_email;
-    private TextView tvname, tvspeciality, tvemail, tvgender, tvage,tvhospitalname,tvhospitalid, mBack;
+    private String current_user,d_name, d_speciality, d_hospitalId, d_hospitalName, d_gender, d_age,d_email, d_studies;
+    private TextView tvname, tvspeciality, tvemail, tvgender, tvage,tvhospitalname,tvhospitalid,tvStudies, mBack;
     Button btnContact;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
@@ -119,6 +119,11 @@ public class DoctorProfile extends AppCompatActivity {
                         tvname.setText(d_name);
                     }
 
+                    if (map.get("studies") != null) {
+                        d_studies = map.get("studies").toString();
+                        tvStudies.setText(d_studies);
+                    }
+
                     if (map.get("email") != null) {
                         d_email = map.get("email").toString();
                         tvemail.setText(d_email);
@@ -174,6 +179,7 @@ public class DoctorProfile extends AppCompatActivity {
         tvhospitalname = findViewById(R.id.tv_hospital_name);
         mBack = findViewById(R.id.back);
         btnContact = findViewById(R.id.con_doc);
+        tvStudies = findViewById(R.id.tv_studies);
 
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
