@@ -10,11 +10,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="DISEASE INFORMATION"
+        android:text="DISEASES INFORMATION"
         android:gravity="center"
+        android:id="@+id/info"
         android:fontFamily="@font/crimson_text"
         android:layout_marginTop="12dp"
         android:textSize="32sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome, "
+        android:layout_below="@id/info"
+        android:id="@+id/welcome"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="12dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="32sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:id="@+id/user_name"
+        android:layout_below="@id/info"
+        android:gravity="center_vertical"
+        android:layout_toRightOf="@id/welcome"
+        android:textColor="@color/white"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:textStyle="italic"
+        android:textSize="32sp"
+        />
 
 
     <LinearLayout
