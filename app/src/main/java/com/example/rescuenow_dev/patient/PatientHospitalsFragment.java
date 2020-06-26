@@ -186,7 +186,7 @@ public class PatientHospitalsFragment extends Fragment implements OnMapReadyCall
                     latitude = location.getLatitude();
                     longitude = location.getLongitude();
 
-                    mGoogleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                    mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
                     mGoogleMap.addMarker(new MarkerOptions()
                             .position(new LatLng(latitude, longitude))
