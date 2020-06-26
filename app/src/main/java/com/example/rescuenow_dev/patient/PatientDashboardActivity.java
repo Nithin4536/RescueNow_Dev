@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rescuenow_dev.common.AccountFragment;
@@ -21,6 +22,11 @@ import com.example.rescuenow_dev.patient.consult_doctors.ConsultDoctorsFragment;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class PatientDashboardActivity extends AppCompatActivity {
 
@@ -29,6 +35,7 @@ public class PatientDashboardActivity extends AppCompatActivity {
     MaterialToolbar mToolbar;
     BottomNavigationView bottomNavigationView;
     Button mAllDiseases;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +46,7 @@ public class PatientDashboardActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         mToolbar = findViewById(R.id.toolbar);
+
         setSupportActionBar(mToolbar);
         bottomNavigationView = findViewById(R.id.bottom_nav_patient);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -46,6 +54,8 @@ public class PatientDashboardActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.homeFragment);
 
     }
+
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {

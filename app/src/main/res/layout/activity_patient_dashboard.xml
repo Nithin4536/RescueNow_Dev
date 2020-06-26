@@ -15,12 +15,20 @@
         app:menu="@menu/toolbar_menu"
         android:id="@+id/toolbar" />
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:layout_below="@id/toolbar"
+        android:background="@drawable/background"
+        />
+
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/container"
-        android:layout_below="@id/toolbar"
-        android:background="@drawable/background"
+       android:layout_below="@id/toolbar"
         android:layout_above="@+id/bottom_nav_patient"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
