@@ -1,19 +1,16 @@
 package com.example.rescuenow_dev.doctor;
 
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
-
-import com.example.rescuenow_dev.common.AccountFragment;
-import com.example.rescuenow_dev.common.LoginActivity;
 import com.example.rescuenow_dev.R;
+import com.example.rescuenow_dev.common.AccountFragment;
 import com.example.rescuenow_dev.doctor.consultpatient.DoctorPatientChat;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -24,6 +21,7 @@ public class DoctorDashboardActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     MaterialToolbar mToolbar;
     BottomNavigationView bottomNavigationView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +38,8 @@ public class DoctorDashboardActivity extends AppCompatActivity {
 
 
     }
+
+
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

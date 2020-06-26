@@ -29,7 +29,7 @@ import java.util.Map;
 
 public class ModifyDiseases extends YouTubeBaseActivity {
 
-    EditText diseaseTitle, diseaseDescription, diseaseSymptoms, diseasePrecautions, diseaseMedicines;
+    EditText diseaseTitle, diseaseDescription, diseaseSymptoms, diseasePrecautions, diseaseMedicines, diseaseUrl;
     String disease_title,disease_id, disease_description, disease_symptoms, disease_precautions, disease_medicines, disease_url, role;
     private MaterialToolbar materialToolbar;
     YouTubePlayerView youTubePlayerView;
@@ -53,7 +53,6 @@ public class ModifyDiseases extends YouTubeBaseActivity {
         disease_url = getIntent().getStringExtra("disease_url");
 
 
-
         initUI();
         setUI();
 
@@ -68,6 +67,7 @@ public class ModifyDiseases extends YouTubeBaseActivity {
         diseaseMedicines.setText(disease_medicines);
         diseaseSymptoms.setText(disease_symptoms);
         diseasePrecautions.setText(disease_precautions);
+        diseaseUrl.setText(disease_url);
 
 
         materialToolbar.setTitle(disease_title.toUpperCase());
@@ -120,6 +120,7 @@ public class ModifyDiseases extends YouTubeBaseActivity {
         disease_precautions = diseasePrecautions.getText().toString();
         disease_title = diseaseTitle.getText().toString();
         disease_description = diseaseDescription.getText().toString();
+        disease_url = diseaseUrl.getText().toString();
 
         Map DiseasesMap = new HashMap();
 
@@ -149,6 +150,7 @@ public class ModifyDiseases extends YouTubeBaseActivity {
         diseaseMedicines = findViewById(R.id.dis_medicines);
         materialToolbar = findViewById(R.id.toolbar);
         mSaveDisease = findViewById(R.id.save_disease);
+        diseaseUrl = findViewById(R.id.disease_url);
 
         FirebaseDatabase.getInstance().getReference().child("Users")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -162,6 +164,7 @@ public class ModifyDiseases extends YouTubeBaseActivity {
                     diseasePrecautions.setEnabled(false);
                     diseaseSymptoms.setEnabled(false);
                     diseaseMedicines.setEnabled(false);
+                    diseaseUrl.setEnabled(false);
                     mSaveDisease.setVisibility(View.GONE);
                 }
             }

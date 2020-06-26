@@ -48,6 +48,8 @@ public class DoctorAddDiseaseHome extends Fragment {
     Button mAddNewDisease, mViewAllDisease;
     LinearLayout btnLayout, addLayout, avaDiseasesLayout;
     RecyclerView mRecyclerView;
+    TextView mUserName;
+    DatabaseReference mUserDb;
     //Firebase Recycler options
     FirebaseRecyclerOptions<Diseases> options;
 
@@ -82,6 +84,9 @@ public class DoctorAddDiseaseHome extends Fragment {
         etMedicines = view.findViewById(R.id.disease_medicines);
         etUrl = view.findViewById(R.id.disease_url);
         mRecyclerView = view.findViewById(R.id.recycler_view_symtoms);
+
+        mUserName = view.findViewById(R.id.user_name);
+        setUserName();
 
         btnLayout = view.findViewById(R.id.ll1);
         addLayout = view.findViewById(R.id.ll2);
@@ -192,8 +197,27 @@ public class DoctorAddDiseaseHome extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         getListofDiseases();
 
-
     }
+
+
+        private void setUserName() {
+            mUserDb = FirebaseDatabase.getInstance().getReference().child("Users");
+            mUserDb.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.exists())
+                    {
+                        mUserName.setText(dataSnapshot.child(currentUserId)
+                                .child("name").getValue().toString());
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
 
     private void getListofDiseases() {
 
