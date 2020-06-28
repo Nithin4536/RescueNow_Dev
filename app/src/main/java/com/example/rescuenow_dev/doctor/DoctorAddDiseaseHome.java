@@ -267,6 +267,7 @@ public class DoctorAddDiseaseHome extends Fragment {
         etMedicines.setText("");
         etDiseaseName.setText("");
         etPrecautions.setText("");
+        etUrl.setText("");
         etSymptoms.setText("");
     }
 
